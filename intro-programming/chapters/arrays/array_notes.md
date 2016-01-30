@@ -56,7 +56,7 @@ a.each_with_index { |v,i| puts "#{i+1}. #{v}" }
 
 ## #each vs #map
 
-#each runs the code in the block once for each element in the collection and returns the collection it was invoked on.
+The method #each runs the code in the block once for each element in the collection and returns the collection it was invoked on.
 
 ```
 a = [1,2,3]
@@ -66,7 +66,7 @@ a.each { |e| e**2 }
 
 ```
 
-#map differs from each in that it creates and returns a new array containing the values returned by the block.
+The #map method differs from each in that it creates and returns a new array containing the values returned by the block.
 
 ```
 a = [1,2,3]
