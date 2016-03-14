@@ -1,5 +1,10 @@
-# An application to take two numbers and either (a)dd, s(ubtract), m(ultiply)
-# or d(ivide) them to produce a result.
+# An application to take two numbers and either add, subtract, multiply
+# or divide them and output the result.
+
+# take two numbers from the user and store the numbers in local variables
+# take the operation type from the user and store in a local variable
+# perform the operation on the two numbers
+# output the result
 
 p "Welcome to Calculator!"
 p "What's the first number?"

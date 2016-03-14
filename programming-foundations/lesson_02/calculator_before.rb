@@ -1,5 +1,5 @@
-# An application to take two numbers and either (a)dd, s(ubtract), m(ultiply)
-# or d(ivide) them to produce a result.
+# An application to take two numbers and either (a)dd, (s)ubtract, (m)ultiply
+# or (d)ivide them and output the result.
 
 # This application was written before watching the video as a kind of self test
 # and so I could compare my own approach to that of the instructor's.
