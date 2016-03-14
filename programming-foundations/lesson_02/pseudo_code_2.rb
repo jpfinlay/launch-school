@@ -27,7 +27,7 @@
 #
 # END
 
-strings = %w[(the) (quick) (brown) (fox)]
+strings = %w(the quick brown fox)
 result = strings.shift
 
 strings.each do |string|
