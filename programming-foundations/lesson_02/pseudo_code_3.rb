@@ -1,15 +1,15 @@
 # This is the pseudo code for a method that takes an array of integers, and
 # returns a new array with every other element
 
-## CASUAL PSEUDO CODE
+# CASUAL PSEUDO CODE
 
 # Given that we have an array of integers
-  # create a new array
-  # iterate over the original array
-  # store every other element inside the new array
-  # return the new array
+# create a new array
+# iterate over the original array
+# store every other element inside the new array
+# return the new array
 
-## FORAML PSEUDO CODE
+# FORAML PSEUDO CODE
 
 # START
 #

@@ -14,14 +14,14 @@ number2 = gets.chomp
 p "What operation would you like to perform? 1) add, 2) subtract, 3) multiply or 4) divide: "
 operation = gets.chomp
 
-if operation == "1"
-  result = number1.to_i + number2.to_i
-elsif operation == "2"
-  result = number1.to_i - number2.to_i
-elsif operation == "3"
-  result = number1.to_i * number2.to_i
-else
-  result = number1.to_f / number2.to_f
-end
+result =  if operation == "1"
+            number1.to_i + number2.to_i
+          elsif operation == "2"
+            number1.to_i - number2.to_i
+          elsif operation == "3"
+            number1.to_i * number2.to_i
+          else
+            number1.to_f / number2.to_f
+          end
 
 puts "The result is #{result}"

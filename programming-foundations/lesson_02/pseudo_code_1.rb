@@ -3,10 +3,10 @@
 # CASUAL PSEUDO CODE
 
 # Given that we have two valid integers
-  # add integer one to integer two and store in a variable
-  # return the value stored in the variable
+# add integer one to integer two and store in a variable
+# return the value stored in the variable
 
-## FORMAL PSEUDO CODE
+# FORMAL PSEUDO CODE
 
 # START
 #

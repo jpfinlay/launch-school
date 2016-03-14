@@ -1,15 +1,15 @@
 # This is the pseudo code for a method that takes an array of strings, and
 # returns a string that is all those strings concatenated together
 
-## CASUAL PSEUDO CODE
+# CASUAL PSEUDO CODE
 
 # Given that we have an array of strings
-  # set a result variable equal to the first string in the array
-  # iterate over the array from the second location to the last
-  # at each location in the array, add the string to the result variable
-  # return the result variable
+# set a result variable equal to the first string in the array
+# iterate over the array from the second location to the last
+# at each location in the array, add the string to the result variable
+# return the result variable
 
-## FORAML PSEUDO CODE
+# FORAML PSEUDO CODE
 
 # START
 #
@@ -27,7 +27,7 @@
 #
 # END
 
-strings = %w[the quick brown fox]
+strings = %w[(the) (quick) (brown) (fox)]
 result = strings.shift
 
 strings.each do |string|
