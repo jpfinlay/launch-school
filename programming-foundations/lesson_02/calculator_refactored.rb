@@ -28,10 +28,7 @@ name = ''
 loop do
   name = gets.chomp
 
-  if name.empty?
-    prompt "Make sure you use a valid name."
-  else break
-  end
+  name.empty? ? prompt("Make sure you use a valid name.") : break
 end
 
 prompt "Hello #{name}."
@@ -43,11 +40,7 @@ loop do # main loop
     prompt "What's the first number?"
     number1 = gets.chomp
 
-    if valid_number?(number1)
-      break
-    else
-      prompt "Hmmm... That doesn't look like a valid number. Try again."
-    end
+    valid_number?(number1) ? break : prompt("Hmmm... That doesn't look like a valid number. Try again.")
   end
 
   # Get the second number
@@ -56,11 +49,7 @@ loop do # main loop
     prompt "What's the second number?"
     number2 = gets.chomp
 
-    if valid_number?(number2)
-      break
-    else
-      prompt "Hmmm... That doesn't look like a valid number. Try again."
-    end
+    valid_number?(number2) ? break : prompt("Hmmm... That doesn't look like a valid number. Try again.")
   end
 
   operator_prompt = <<-MSG
@@ -77,11 +66,7 @@ loop do # main loop
   loop do
     operator = gets.chomp
 
-    if %w(1 2 3 4).include?(operator)
-      break
-    else
-      prompt "Must choose 1, 2, 3 or 4."
-    end
+    %w(1 2 3 4).include?(operator) ? break : prompt("Must choose 1, 2, 3 or 4.")
   end
 
   prompt "#{operation_to_message(operator)} the two numbers..."
