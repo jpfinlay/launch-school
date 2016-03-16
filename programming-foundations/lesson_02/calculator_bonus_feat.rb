@@ -6,7 +6,7 @@
 # 4. Get values from Calculator calculator_config.yml
 require 'yaml'
 MESSAGES = YAML.load_file('calculator_config.yml')
-LANGUAGE = 'es'
+LANGUAGE = 'en'
 
 def messages(message, lang='en')
   MESSAGES[lang][message]
@@ -75,12 +75,12 @@ loop do # main loop
   end
 
   operator_prompt = <<-MSG
-    What operation would you like to perform?
-    1) Add
-    2) Subtract
-    3) Multiply
-    4) Divide
-  MSG
+  #{prompt('operator_prompt')}
+  1) add
+  2) subract
+  3) multiply
+  4) divide
+MSG
 
   puts operator_prompt
 
