@@ -1,26 +1,41 @@
 en:
   welcome:              'Welcome to Calculator! Enter your name:'
-  greeting:             'Hello '
+  greeting:             'Hello'
   empty_name:           'Make sure you use a valid name.'
   first_number:         'Enter the first number:'
   second_number:        'Enter the second number:'
   invalid_number:       'Hmmm... That doesn''t look like a valid number. Try again.'
-  operator_prompt:      'What operation would you like to perform?'
-  add:                  'add'
-  subtract:             'subtract'
-  multiply:             'multiply'
-  divide:               'divide'
+  operator_prompt:      |+
+    What operation would you like to perform?
+    1. add
+    2. subtract
+    3. multiply
+    4. divide
   invalid_choice:       'Must choose 1, 2, 3 or 4.'
-  result:               'The result is '
+  adding:               'Adding the two numbers...'
+  subtracting:          'Subtracting the two numbers...'
+  multiplying:          'Multiplying the two numbers...'
+  dividing:             'Dividing the two numbers...'
+  result:               'The result is'
   another_calculation:  'Do you want to perform another calculation? (Y to calculate again.)'
 
 es:
   welcome:              'Bienvenido a la calculadora! Entre su nombre:'
-  greeting:             'Hola '
+  greeting:             'Hola'
   empty_name:           'Asegúrese de entrar un nombre válido.'
   first_number:         'Entrada el primero numero:'
   second_number:        'Entrada el segundo numero:'
   invalid_number:       'Hmmm... No se parece un numero válido. Inténtalo de nuevo.'
+  operator_prompt:      |+
+    Que operación?
+    1. añadir
+    2. sustraer
+    3. multiplicar
+    4. dividir
   invalid_choice:       'Debe elegir 1, 2, 3 or 4.'
-  result:               'La resulta es '
+  adding:               'Añadir los dos numeros...'
+  subtracting:          'Sustraer los dos numeros...'
+  multiplying:          'Multiplicar los dos numeros...'
+  dividing:             'Dividir los dos numeros...'
+  result:               'La resulta es'
   another_calculation:  'Quieres cálculo de nuevo? (S cálculo de nuevo.)'

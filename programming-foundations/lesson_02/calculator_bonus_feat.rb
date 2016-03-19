@@ -14,7 +14,7 @@ end
 
 def prompt(key)
   message = messages(key, LANGUAGE)
-  Kernel.puts("=> #{message}")
+  Kernel.print("=> #{message} ")
 end
 
 def float?(input)
@@ -32,13 +32,13 @@ end
 def operation_to_message(op)
   selected_operator = case op # 3. Save the result to a variable and explicitly return it
                       when '1'
-                        'Adding'
+                        prompt('adding')
                       when '2'
-                        'Subtracting'
+                        prompt('subtracting')
                       when '3'
-                        'Multiplying'
+                        prompt('multiplying')
                       when '4'
-                        'Dividing'
+                        prompt('dividing')
                       end
 
   selected_operator
@@ -53,7 +53,7 @@ loop do
   name.empty? ? prompt(empty_name) : break
 end
 
-prompt('greeting')
+puts "#{prompt('greeting')} #{name}"
 
 loop do # main loop
   # Get the first number
@@ -76,13 +76,7 @@ loop do # main loop
 
   operator_prompt = <<-MSG
   #{prompt('operator_prompt')}
-  1) add
-  2) subract
-  3) multiply
-  4) divide
 MSG
-
-  puts operator_prompt
 
   operator = ''
   loop do
@@ -91,7 +85,7 @@ MSG
     %w(1 2 3 4).include?(operator) ? break : prompt('invalid_choice')
   end
 
-  puts "#{operation_to_message(operator)} the two numbers..."
+  puts "#{operation_to_message(operator)}"
   sleep 2
 
   result =  case operator
