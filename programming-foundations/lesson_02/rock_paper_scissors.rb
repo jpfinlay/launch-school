@@ -1,23 +1,31 @@
 # rock_paper_scissors.rb
 # A simple version of the game Rock, Paper, Scissors
 
-VALID_CHOICES = %w(rock paper scissors)
+VALID_CHOICES = %w(rock paper scissors).freeze
 
 def prompt(message)
   puts "=> #{message}"
 end
 
+def player_won?(player, computer)
+  (player == 'rock' && computer == 'scissors') ||
+    (player == 'paper' && computer == 'rock') ||
+    (player == 'scissors' && computer == 'paper')
+end
+
+def computer_won?(player, computer)
+  (player == 'rock' && computer == 'paper') ||
+    (player == 'paper' && computer == 'scissors') ||
+    (player == 'scissors' && computer == 'rock')
+end
+
 def display_result(player, computer)
-  if  (player == 'rock' && computer == 'scissors') ||
-      (player == 'paper' && computer == 'rock') ||
-      (player == 'scissors' && computer == 'paper')
-    prompt("You chose #{player}; computer chose #{computer}. You won!")
-  elsif (player == 'rock' && computer == 'paper') ||
-        (player == 'paper' && computer == 'scissors') ||
-        (player == 'scissors' && computer == 'rock')
-    prompt("You chose #{player}; computer chose #{computer}. Computer won!")
+  if player_won?(player, computer)
+    prompt("YOU WON! You chose #{player}; computer chose #{computer}.")
+  elsif computer_won?(player, computer)
+    prompt("COMPUTER WON! You chose #{player}; computer chose #{computer}.")
   else
-    prompt("You chose #{player}; computer chose #{computer}. It's a tie!")
+    prompt("IT'S A TIE! You chose #{player}; computer chose #{computer}.")
   end
 end
 
