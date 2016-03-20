@@ -11,12 +11,7 @@ loop do
   amount = ''
   loop do
     amount = Kernel.gets().chomp()
-
-    if amount.empty?() || amount.to_f() < 0
-      prompt("Must enter positive number.")
-    else
-      break
-    end
+    amount.empty?() || amount.to_f() < 0 ? prompt("Must enter positive number.") : break
   end
 
   prompt("What is the interest rate?")
@@ -25,12 +20,7 @@ loop do
   interest_rate = ''
   loop do
     interest_rate = Kernel.gets().chomp()
-
-    if interest_rate.empty?() || interest_rate.to_f() < 0
-      prompt("Must enter positive number.")
-    else
-      break
-    end
+    interest_rate.empty?() || interest_rate.to_f() < 0 ? prompt("Must enter positive number.") : break
   end
 
   prompt("What is the loan duration (in years)?")
@@ -38,12 +28,7 @@ loop do
   years = ''
   loop do
     years = Kernel.gets().chomp()
-
-    if years.empty?() || years.to_i() < 0
-      prompt("Enter a valid number")
-    else
-      break
-    end
+    years.empty?() || years.to_i() < 0 ? prompt("Enter a valid number") : break
   end
 
   annual_interest_rate = interest_rate.to_f() / 100

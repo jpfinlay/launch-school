@@ -44,6 +44,6 @@ loop do # main loop
 
   prompt('Play again?')
   answer = gets.chomp
-  break unless answer.start_with?('y')
+  break unless answer.donwcase.start_with?('y')
 end
 prompt("Thank you for playing. Good bye!")

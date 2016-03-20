@@ -6,9 +6,9 @@
 # 4. Get values from Calculator calculator_config.yml
 require 'yaml'
 MESSAGES = YAML.load_file('calculator_config.yml')
-LANGUAGE = 'en'
+LANGUAGE = 'en'.freeze
 
-def messages(message, lang='en')
+def messages(message, lang = 'en')
   MESSAGES[lang][message]
 end
 
@@ -30,18 +30,16 @@ def number?(input)
 end
 
 def operation_to_message(op)
-  selected_operator = case op # 3. Save the result to a variable and explicitly return it
-                      when '1'
-                        prompt('adding')
-                      when '2'
-                        prompt('subtracting')
-                      when '3'
-                        prompt('multiplying')
-                      when '4'
-                        prompt('dividing')
-                      end
-
-  selected_operator
+  case op # 3. Save the result to a variable and explicitly return it
+  when '1'
+    prompt('adding')
+  when '2'
+    prompt('subtracting')
+  when '3'
+    prompt('multiplying')
+  when '4'
+    prompt('dividing')
+  end
 end
 
 prompt('welcome')
@@ -74,9 +72,7 @@ loop do # main loop
     number?(number2) ? break : prompt('second_number')
   end
 
-  operator_prompt = <<-MSG
-  #{prompt('operator_prompt')}
-MSG
+  prompt('operator_prompt')
 
   operator = ''
   loop do
@@ -85,7 +81,7 @@ MSG
     %w(1 2 3 4).include?(operator) ? break : prompt('invalid_choice')
   end
 
-  puts "#{operation_to_message(operator)}"
+  puts operation_to_message(operator)
   sleep 2
 
   result =  case operator
@@ -104,5 +100,5 @@ MSG
 
   prompt('another_calculation')
   answer = gets.chomp
-  break unless answer.downcase.start_with?('y') || answer.downcase.start_with?('s')
+  break unless answer.downcase.start_with?('y', 's')
 end
