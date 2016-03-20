@@ -18,7 +18,7 @@ def loan_duration_months(loan_duration)
   loan_duration.to_i * 12
 end
 
-def monthly_repayment(l,c,n)
+def monthly_repayment(l, c, n)
   l * (c * (1 + c)**n) / ((1 + c)**n - 1)
 end
 
@@ -60,7 +60,7 @@ loop do
   l = loan_amount.to_i
   c = monthly_interest_rate(apr).to_f
   n = loan_duration_months(loan_duration).to_i
-  mp = monthly_repayment(l,c,n)
+  mp = monthly_repayment(l, c, n)
 
   puts ""
   puts " LOAN REPORT ".center(50, '=')
