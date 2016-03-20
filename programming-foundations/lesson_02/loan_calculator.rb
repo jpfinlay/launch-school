@@ -60,13 +60,14 @@ loop do
   l = loan_amount.to_i
   c = monthly_interest_rate(apr).to_f
   n = loan_duration_months(loan_duration).to_i
+  mp = monthly_repayment(l,c,n)
 
   puts ""
   puts " LOAN REPORT ".center(50, '=')
   puts "Amount: £#{loan_amount}"
   puts "Duration: #{loan_duration} years"
   puts "interest Rate (APR): #{apr}"
-  puts "Monthly Repayment: £#{monthly_repayment(l,c,n).round}"
+  puts "Monthly Repayment: £#{format('%02.2f', mp)}"
   puts "=".ljust(50, '=')
   puts ""
   puts "Do you want to calculate another loan?"
