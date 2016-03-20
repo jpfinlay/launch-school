@@ -8,4 +8,5 @@
 | 2     | Mon, 14 March 2016  | Lesson 2: Topics 1 - 10                         | 6.5       |
 | 3     | Tue, 15 March 2016  | Lesson 2: Topic 11 - Calculator Bonus Features  | 3         |
 | 4     | Wed, 16 March 2016  | Lesson 2: Changes to Calculator Bonus Features  | 1         |
-|       |                     | **Total**                                       | **11.5**  |
+| 5     | Sat, 19 March 2016  | Lesson 2: Start Loan Calculator Assignment      | 1.5       |
+|       |                     | **Total**                                       | **13**    |
