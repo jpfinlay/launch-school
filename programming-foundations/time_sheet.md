@@ -12,3 +12,7 @@
 | 5     | Sat, 19 | Lesson 2: Loan Calculator Assignment            | 1.5       |
 | 6     | Sun, 20 | Lesson 2: Coding Tips 2                         | 4.5       |
 |       |         | **WEEK 1 TOTAL HOURS**                          | **17.5**  |
+|       |         |                                                 |           |
+|       |         | **WEEK 2: 21 - 28 MARCH 2016**                  |           |
+| 7     | Tue, 22 | Assignment RPS Bonus Features                   | 2         |
+|       |         | **WEEK 2 TOTAL HOURS**                          | **2**     |
