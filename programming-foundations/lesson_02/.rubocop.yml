@@ -34,5 +34,8 @@ Style/StringLiterals:
   - single_quotes
   - double_quotes
 
+Style/GlobalVars:
+  AllowedVariables: [$player_score, $computer_score]
+
 Metrics/LineLength:
   Enabled: false
