@@ -15,4 +15,5 @@
 |       |         |                                                 |           |
 |       |         | **WEEK 2: 21 - 28 MARCH 2016**                  |           |
 | 7     | Tue, 22 | Assignment RPS Bonus Features                   | 2         |
-|       |         | **WEEK 2 TOTAL HOURS**                          | **2**     |
+| 8     | Wed, 23 | Lesson 3: Exercises Introduction                | 2         |
+|       |         | **WEEK 2 TOTAL HOURS**                          | **4**     |
