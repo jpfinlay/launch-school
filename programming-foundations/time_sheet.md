@@ -17,4 +17,5 @@
 | 7     | Tue, 22 | Assignment RPS Bonus Features                   | 2         |
 | 8     | Wed, 23 | Lesson 3: Exercises Introduction                | 2         |
 | 9     | Sat, 26 | Lesson 3: Exercises: Medium 2                   | 7.5       |
-|       |         | **WEEK 2 TOTAL HOURS**                          | **11.5**  |
+| 10    | Sun, 27 | Lesson 3: Exercises: Hard 1                     | 4         |
+|       |         | **WEEK 2 TOTAL HOURS**                          | **15.5**  |
