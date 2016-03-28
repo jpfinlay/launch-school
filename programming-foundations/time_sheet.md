@@ -19,3 +19,7 @@
 | 9     | Sat, 26 | Lesson 3: Exercises: Medium 2                   | 7.5       |
 | 10    | Sun, 27 | Lesson 3: Exercises: Hard 1                     | 4         |
 |       |         | **WEEK 2 TOTAL HOURS**                          | **15.5**  |
+|       |         |                                                 |           |
+|       |         | **WEEK 3: 29 MARCH - 3 APRIL 2016**             |           |
+| 11    | Sun, 29 | Lesson 4: Walk-through: Tic Tac Toe             | 4         |
+|       |         | **WEEK 2 TOTAL HOURS**                          | **4**     |
