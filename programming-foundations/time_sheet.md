@@ -13,13 +13,15 @@
 | 6     | Sun, 20 | Lesson 2: Coding Tips 2                         | 4.5       |
 |       |         | **WEEK 1 TOTAL HOURS**                          | **17.5**  |
 |       |         |                                                 |           |
-|       |         | **WEEK 2: 21 - 28 MARCH 2016**                  |           |
+|       |         | **WEEK 2: 21 - 27 MARCH 2016**                  |           |
 | 7     | Tue, 22 | Assignment RPS Bonus Features                   | 2         |
 | 8     | Wed, 23 | Lesson 3: Exercises Introduction                | 2         |
 | 9     | Sat, 26 | Lesson 3: Exercises: Medium 2                   | 7.5       |
 | 10    | Sun, 27 | Lesson 3: Exercises: Hard 1                     | 4         |
 |       |         | **WEEK 2 TOTAL HOURS**                          | **15.5**  |
 |       |         |                                                 |           |
-|       |         | **WEEK 3: 29 MARCH - 3 APRIL 2016**             |           |
-| 11    | Sun, 29 | Lesson 4: Walk-through: Tic Tac Toe             | 4         |
-|       |         | **WEEK 2 TOTAL HOURS**                          | **4**     |
+|       |         | **WEEK 3: 28 MARCH - 3 APRIL 2016**             |           |
+| 11    | Sun, 28 | Lesson 4: Walk-through: Tic Tac Toe             | 4         |
+| 12    | Mon, 29 | Lesson 4: Walk-through: Tic Tac Toe             | 3         |
+| 13    | Tue, 30 | Lesson 4: Walk-through: Tic Tac Toe             | 4         |
+|       |         | **WEEK 2 TOTAL HOURS**                          | **11*     |
