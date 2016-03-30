@@ -21,8 +21,7 @@
 |       |         | **WEEK 2 TOTAL HOURS**                          | **15.5**  |
 |       |         |                                                 |           |
 |       |         | **WEEK 3: 28 MARCH - 3 APRIL 2016**             |           |
-| 11    | Sun, 28 | Lesson 4: Walk-through: Tic Tac Toe             | 4         |
-| 12    | Mon, 29 | Lesson 4: Walk-through: Tic Tac Toe Ctd.        | 3         |
-| 13    | Tue, 30 | Lesson 4: Walk-through: Tic Tac Toe Ctd.        | 4         |
-| 13    | Wed, 31 | Lesson 4: Walk-through: Tic Tac Toe Ctd.        | 4         |
-|       |         | **WEEK 2 TOTAL HOURS**                          | **15*     |
+| 11    | Mon, 28 | Lesson 4: Walk-through: Tic Tac Toe             | 4         |
+| 12    | Tue, 29 | Lesson 4: Walk-through: Tic Tac Toe Ctd.        | 3         |
+| 13    | Wed, 30 | Lesson 4: Walk-through: Tic Tac Toe Ctd.        | 4         |
+|       |         | **WEEK 2 TOTAL HOURS**                          | **11*     |
