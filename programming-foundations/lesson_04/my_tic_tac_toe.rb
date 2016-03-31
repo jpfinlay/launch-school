@@ -1,6 +1,19 @@
 # my_tic_tac_toe.rb
 # A tic-tac-toe Ruby game app.
 
+winning_combinations = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9],
+  [1, 5, 9],
+  [3, 5, 9]
+]
+
+corner_squares = [1, 3, 7, 9]
+
 def prompt(message)
   print("=> #{message} ")
 end
@@ -13,6 +26,16 @@ def valid_pick?(valid_picks, input, picks)
   else
     false
   end
+end
+
+def free_centre_square?(valid_picks)
+  valid_picks.include?(5)
+end
+
+def free_corner_square?(corner_squares, valid_picks)
+  # valid_picks.each { |v| free_corners << v if corner_squares.include?(v) }
+  # return free_corners.sample unless free_corners.empty?
+  corner_square_choice = (corner_squares - (corner_squares - valid_picks)).sample
 end
 
 def display_board(valid_picks)
@@ -35,42 +58,38 @@ def number?(input)
   integer?(input)
 end
 
-def winner?(numbers, winning_combinations)
-  p numbers
-  winning_combinations.each do |combi|
-    if (combi <=> numbers.sort) == 0
-      break true
-    else
-      false
+def won_in_three?(numbers, winning_combinations)
+  winning_combinations.each do |combination|
+    return true if (combination <=> numbers.sort) == 0
+  end
+  false
+end
+
+def won_in_four?(numbers, winning_combinations)
+  winning_combinations.each do |combination|
+    not_winners = numbers - combination
+    if not_winners.size == 1
+      numbers.delete(not_winners[0])
+      won_in_three?(numbers, winning_combinations)
     end
   end
-  return false
 end
 
 def display_result(picks, winning_combinations)
-  if winner?(picks[:player], winning_combinations)
-    prompt("YOU WON!")
-  elsif winner?(picks[:computer], winning_combinations)
-    prompt("COMPUTER WON!")
+  if  (won_in_three?(picks[:player], winning_combinations) == true) ||
+      (won_in_three?(picks[:computer], winning_combinations) == true)
+    return "WON in 3!"
+  elsif (won_in_four?(picks[:player], winning_combinations) == true) ||
+        (won_in_four?(picks[:computer], winning_combinations) == true)
+    return "WON in 4!"
   else
-    prompt("IT'S A TIE!")
+    return false
   end
 end
 
 loop do # main outer loop
-
   # Set up board and winning combinations
   valid_picks = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  winning_combinations = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-    [1, 4, 7],
-    [2, 5, 8],
-    [3, 6, 9],
-    [1, 5, 9],
-    [3, 5, 9]
-  ]
 
   display_board(valid_picks)
 
@@ -80,6 +99,10 @@ loop do # main outer loop
 
   loop do # main inner loop
     input = ''
+    result = ''
+    free_corners = (corner_squares - (corner_squares - valid_picks))
+    corner_square_choice = ''
+    puts "Free corners: #{free_corners}"
 
     loop do # Get players input
       puts "\n"
@@ -90,20 +113,37 @@ loop do # main outer loop
     end
 
     # Get the computer's choice
-    computer_pick = valid_picks.sample
-    picks[:computer] << computer_pick
-    valid_picks.delete(computer_pick)
+    case computer
+    when free_centre_square?(valid_picks)
+      picks[:computer] << 5
+    when free_corner_square?(corner_squares, valid_picks)
+      
+
+    if free_centre_square?(valid_picks)
+      picks[:computer] << 5
+    elsif free_corner_square?(corner_squares, valid_picks)
+      picks[:computer] << corner_square_choice
+    else
+      picks[:computer] << valid_picks.sample
+    end
+
+    valid_picks.delete(picks[:computer].last)
 
     puts "Selections so far: #{picks}"
 
     round += 1
     display_board(valid_picks)
 
-    if round == 3 || round == 4
-      display_result(picks, winning_combinations)
-    elsif round > 4
-      prompt("IT'S A TIE!")
-      break
+    case round
+    when round > 5
+      result = "IT'S A TIE!"
+      break prompt(result)
+    when 3
+      result = display_result(picks, winning_combinations)
+      break prompt(result) unless result == false
+    when 4
+      result = display_result(picks, winning_combinations)
+      break prompt(result) unless result == false
     end
   end
 
@@ -111,4 +151,4 @@ loop do # main outer loop
   answer = gets.chomp
   break unless answer.downcase.start_with?('y')
 end
-prompt("Thank you for playing. Good bye!")
+prompt("Thank you for playing. Good bye!\n")

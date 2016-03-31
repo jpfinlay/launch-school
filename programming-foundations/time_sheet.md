@@ -24,4 +24,5 @@
 | 11    | Mon, 28 | Lesson 4: Walk-through: Tic Tac Toe             | 4         |
 | 12    | Tue, 29 | Lesson 4: Walk-through: Tic Tac Toe Ctd.        | 3         |
 | 13    | Wed, 30 | Lesson 4: Walk-through: Tic Tac Toe Ctd.        | 4         |
-|       |         | **WEEK 2 TOTAL HOURS**                          | **11*     |
+| 14    | Thu, 31 | Lesson 4: Walk-through: Tic Tac Toe Ctd.        | 5         |
+|       |         | **WEEK 2 TOTAL HOURS**                          | **16*     |
