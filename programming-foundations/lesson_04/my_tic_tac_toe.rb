@@ -32,11 +32,10 @@ def free_centre_square?(valid_picks)
   valid_picks.include?(5)
 end
 
-def free_corner_square?(corner_squares, valid_picks)
-  # valid_picks.each { |v| free_corners << v if corner_squares.include?(v) }
-  # return free_corners.sample unless free_corners.empty?
-  corner_square_choice = (corner_squares - (corner_squares - valid_picks)).sample
-end
+# def free_corner_square?(corner_squares, valid_picks, corner_square_choice)
+#   corner_square_choice = (corner_squares - (corner_squares - valid_picks)).sample
+#   return corner_square_choice
+# end
 
 def display_board(valid_picks)
   puts "\n\n"
@@ -90,9 +89,8 @@ end
 loop do # main outer loop
   # Set up board and winning combinations
   valid_picks = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
   display_board(valid_picks)
-
+  
   # Track player and computer number selections
   picks = { player: [], computer: [] }
   round = 0
@@ -101,7 +99,7 @@ loop do # main outer loop
     input = ''
     result = ''
     free_corners = (corner_squares - (corner_squares - valid_picks))
-    corner_square_choice = ''
+
     puts "Free corners: #{free_corners}"
 
     loop do # Get players input
@@ -113,16 +111,19 @@ loop do # main outer loop
     end
 
     # Get the computer's choice
-    case computer
-    when free_centre_square?(valid_picks)
-      picks[:computer] << 5
-    when free_corner_square?(corner_squares, valid_picks)
-      
+    # case picks
+    # when free_centre_square?(valid_picks)
+    #   picks[:computer] << 5
+    # when free_corner_square?(corner_squares, valid_picks)
+    #   picks[:computer]
+    # else
+    #   picks[:computer] << valid_picks.sample
+    # end
 
     if free_centre_square?(valid_picks)
       picks[:computer] << 5
-    elsif free_corner_square?(corner_squares, valid_picks)
-      picks[:computer] << corner_square_choice
+    elsif free_corners.size > 0
+      picks[:computer] << free_corners.sample
     else
       picks[:computer] << valid_picks.sample
     end
