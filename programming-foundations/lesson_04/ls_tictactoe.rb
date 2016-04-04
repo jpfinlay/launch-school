@@ -1,14 +1,17 @@
 require 'pry'
 
-INITIAL_MARKER = ' '
-PLAYER_MARKER = 'X'
-COMPUTER_MARKER = 'O'
-
+INITIAL_MARKER = ' '.freeze
+PLAYER_MARKER = 'X'.freeze
+COMPUTER_MARKER = 'O'.freeze
+WINNING_LINES = [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +   # cols
+                [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +   # rows
+                [[1, 5, 9], [3, 5, 7]]                # diagonals
 
 def prompt(msg)
   puts "=> #{msg}"
 end
 
+# rubocop:disable all
 def display_board(brd)
   system 'clear'
   puts "You are #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}"
@@ -25,6 +28,7 @@ def display_board(brd)
   puts "     |     |"
   puts ""
 end
+# rubocop:enable all
 
 def initialize_board
   new_board = {}
@@ -53,20 +57,9 @@ def computer_chooses_square!(brd)
 end
 
 def detect_winner(brd)
-  winning_lines = [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +   # cols
-                  [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +   # rows
-                  [[1, 5, 9], [3, 5, 7]]                # diagonals
-
-  winning_lines.each do |line|
-    if brd[line[0]] == PLAYER_MARKER &&
-      brd[line[1]] == PLAYER_MARKER &&
-      brd[line[2]] == PLAYER_MARKER
-      return 'Player'
-    elsif brd[line[0]] == COMPUTER_MARKER &&
-      brd[line[1]] == COMPUTER_MARKER &&
-      brd[line[2]] == COMPUTER_MARKER
-      return 'Computer'
-    end
+  WINNING_LINES.each do |line|
+    return 'Player' if brd.values_at(*line).count(PLAYER_MARKER) == 3
+    return 'Computer' if brd.values_at(*line).count(COMPUTER_MARKER) == 3
   end
   nil
 end
