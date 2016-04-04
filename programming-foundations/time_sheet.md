@@ -27,4 +27,8 @@
 | 14    | Thu, 31 | Lesson 4: Walk-through: Tic Tac Toe Ctd.        | 5         |
 | 15    | Fri, 01 | Lesson 4: Walk-through: Tic Tac Toe Ctd.        | 1         |
 | 16    | Sun, 03 | Lesson 4: Walk-through: Rubocop Tic Tac Toe     | 3         |
-|       |         | **WEEK 3 TOTAL HOURS**                          | **20*     |
+|       |         | **WEEK 3 TOTAL HOURS**                          | **20**    |
+|       |         |                                                 |           |
+|       |         | **WEEK 4: 4 - 10 APRIL 2016**                   |           |
+| 17    | Mon, 04 | Lesson 4: Tic Tac Toe Bonus Features            | 2         |
+|       |         | **WEEK 4 TOTAL HOURS**                          | **2**     |
