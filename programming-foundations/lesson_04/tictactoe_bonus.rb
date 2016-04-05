@@ -7,8 +7,16 @@ WINNING_LINES = [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +   # cols
                 [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +   # rows
                 [[1, 5, 9], [3, 5, 7]]                # diagonals
 
-def joinor([], seperator="or")
-
+# TTT Bonus Feature 1.
+# Note: I created LS solution first but discounted it as it used Array#join,
+# which I thought was cheating!
+def joinor(array, delimiter=',', join_word="or")
+  return string = array[0].to_s if array.size == 1
+  string = ''
+  last = "#{join_word} " + array.pop.to_s
+  array.each { |el| string << el.to_s + delimiter + ' ' }
+  string += last
+  return string
 end
 
 def prompt(msg)
@@ -47,7 +55,7 @@ end
 def player_chooses_square!(brd)
   square = ''
   loop do
-    prompt("Choose a sqaure (#{empty_squares(brd).join(', ')})")
+    prompt("Choose a sqaure (#{joinor(empty_squares(brd), ',')})")
     square = gets.chomp.to_i
     break if empty_squares(brd).include?(square)
     prompt('Sorry, that is not a valid choice.')
@@ -76,6 +84,13 @@ def board_full?(brd)
   empty_squares(brd).empty?
 end
 
+def up_score
+  score += 1
+end
+
+player_score = 0
+computer_score = 0
+
 loop do
   board = initialize_board
 
@@ -88,16 +103,24 @@ loop do
     break if someone_won?(board) || board_full?(board)
   end
 
-  display_board(board)
-
-  if someone_won?(board)
-    prompt "#{detect_winner(board)} won!"
+  if someone_won?(board) && detect_winner(board) == "Player"
+    player_score += 1
+    prompt "Player won!"
+  elsif someone_won?(board) && detect_winner(board) == "Computer"
+    computer_score += 1
+    prompt "Computer won!"
   else
-    prompt "It's a tie!"
+    prompt "It's a tie! No score."
   end
 
-  prompt "Play again? (y or n)"
-  break unless gets.chomp.downcase.start_with?("y")
+  prompt "Player #{player_score} - #{computer_score} Computer"
+
+  sleep 2
+  display_board(board)
+
+  break if player_score == 5 || computer_score == 5
+  # prompt "Play again? (y or n)"
+  # break unless gets.chomp.downcase.start_with?("y")
 end
 
 prompt "Thank you for playing Tic Tac Toe. Good bye!"

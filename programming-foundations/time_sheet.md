@@ -30,5 +30,8 @@
 |       |         | **WEEK 3 TOTAL HOURS**                          | **20**    |
 |       |         |                                                 |           |
 |       |         | **WEEK 4: 4 - 10 APRIL 2016**                   |           |
-| 17    | Mon, 04 | Lesson 4: Tic Tac Toe Bonus Features            | 2         |
-|       |         | **WEEK 4 TOTAL HOURS**                          | **2**     |
+| 17    | Mon, 04 | Lesson 4: Tic Tac Toe Bonus Features #1         | 2         |
+| 18    | Tue, 05 | Lesson 4: Tic Tac Toe Bonus Features #2         | 1.5       |
+|       |         | **WEEK 4 TOTAL HOURS**                          | **3.5**   |
+|       |         |                                                 |           |
+|       |         | **GRAND TOTAL HOURS**                           | **56.5**  |
