@@ -55,7 +55,7 @@ end
 def player_chooses_square!(brd)
   square = ''
   loop do
-    prompt("Choose a sqaure (#{joinor(empty_squares(brd), ',')})")
+    prompt("Choose a square (#{joinor(empty_squares(brd), ',')})")
     square = gets.chomp.to_i
     break if empty_squares(brd).include?(square)
     prompt('Sorry, that is not a valid choice.')
@@ -64,9 +64,20 @@ def player_chooses_square!(brd)
 end
 
 def computer_chooses_square!(brd)
+  if immediate_threat?
+
   choice = empty_squares(brd).sample
   brd[choice] = COMPUTER_MARKER
 end
+
+def immediate_threat?(brd)
+  WINNING_LINES.each do |line|
+    if brd.values_at(*line).count(PLAYER_MARKER) == 2
+      # find the number needed to block
+    end
+  end
+end
+
 
 def detect_winner(brd)
   WINNING_LINES.each do |line|
