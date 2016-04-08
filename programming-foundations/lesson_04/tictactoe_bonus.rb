@@ -1,4 +1,4 @@
-require 'pry'
+require 'pry' 
 
 INITIAL_MARKER = ' '.freeze
 PLAYER_MARKER = 'X'.freeze
@@ -64,18 +64,22 @@ def player_chooses_square!(brd)
 end
 
 def computer_chooses_square!(brd)
-  if immediate_threat?
-
-  choice = empty_squares(brd).sample
+  if immediate_threat?(brd)
+    choice = immediate_threat?(brd)
+  else
+    choice = empty_squares(brd).sample
+  end
   brd[choice] = COMPUTER_MARKER
 end
 
 def immediate_threat?(brd)
+  square_number = nil
   WINNING_LINES.each do |line|
-    if brd.values_at(*line).count(PLAYER_MARKER) == 2
-      # find the number needed to block
+    if brd.values_at(*line).count(PLAYER_MARKER) == 2 && brd.values_at(*line).count(INITIAL_MARKER) == 1
+      line.each { |el| square_number = el if brd[el] != PLAYER_MARKER }  # find the number needed to block
     end
   end
+  return square_number
 end
 
 
