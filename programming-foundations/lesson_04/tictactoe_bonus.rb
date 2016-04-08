@@ -66,10 +66,22 @@ end
 def computer_chooses_square!(brd)
   if immediate_threat?(brd)
     choice = immediate_threat?(brd)
+  elsif computer_attack(brd)
+    choice = computer_attack(brd)
   else
     choice = empty_squares(brd).sample
   end
   brd[choice] = COMPUTER_MARKER
+end
+
+def computer_attack(brd)
+  square_number = nil
+  WINNING_LINES.each do |line|
+    if brd.values_at(*line).count(COMPUTER_MARKER) == 2 && brd.values_at(*line).count(INITIAL_MARKER) == 1
+      line.each { |el| square_number = el if brd[el] != COMPUTER_MARKER }  # find the number needed to block
+    end
+  end
+  return square_number
 end
 
 def immediate_threat?(brd)
