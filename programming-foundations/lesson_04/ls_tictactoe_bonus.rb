@@ -64,21 +64,18 @@ def player_chooses_square!(brd)
 end
 
 def computer_chooses_square!(brd)
-  if computer_attack(brd)
-    choice = computer_attack(brd)
-  elsif immediate_threat?(brd)
+  if immediate_threat?(brd)
     choice = immediate_threat?(brd)
-  elsif square_five_free?(brd)
-    choice = square_five_free?(brd)
+  elsif computer_attack(brd)
+    choice = computer_attack(brd)
   else
     choice = empty_squares(brd).sample
   end
-  return brd[choice] = COMPUTER_MARKER
+  brd[choice] = COMPUTER_MARKER
 end
 
-# Bonus Feature #4
 def computer_attack(brd)
-  square_number = false
+  square_number = nil
   WINNING_LINES.each do |line|
     if brd.values_at(*line).count(COMPUTER_MARKER) == 2 && brd.values_at(*line).count(INITIAL_MARKER) == 1
       line.each { |el| square_number = el if brd[el] != COMPUTER_MARKER }  # find the number needed to block
@@ -87,20 +84,14 @@ def computer_attack(brd)
   return square_number
 end
 
-# Bonus Feature # 3
 def immediate_threat?(brd)
-  square_number = false
+  square_number = nil
   WINNING_LINES.each do |line|
     if brd.values_at(*line).count(PLAYER_MARKER) == 2 && brd.values_at(*line).count(INITIAL_MARKER) == 1
       line.each { |el| square_number = el if brd[el] != PLAYER_MARKER }  # find the number needed to block
     end
   end
   return square_number
-end
-
-# Bonus Feature #5
-def square_five_free?(brd)
-  return 5 if brd[5] == ' '
 end
 
 
@@ -120,7 +111,6 @@ def board_full?(brd)
   empty_squares(brd).empty?
 end
 
-# Bonus Feature #2
 def up_score
   score += 1
 end
