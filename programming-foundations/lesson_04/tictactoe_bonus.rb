@@ -6,6 +6,8 @@ COMPUTER_MARKER = 'O'.freeze
 WINNING_LINES = [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +   # cols
                 [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +   # rows
                 [[1, 5, 9], [3, 5, 7]]                # diagonals
+                
+FIRST = "computer"
 
 # TTT Bonus Feature 1.
 # Note: I created LS solution first but discounted it as it used Array#join,
@@ -133,11 +135,21 @@ loop do
 
   loop do
     display_board(board)
-    player_chooses_square!(board)
-    break if someone_won?(board) || board_full?(board)
+    if FIRST == "computer"
+      computer_chooses_square!(board)
+      break if someone_won?(board) || board_full?(board)
+      display_board(board)
 
-    computer_chooses_square!(board)
-    break if someone_won?(board) || board_full?(board)
+      player_chooses_square!(board)
+      break if someone_won?(board) || board_full?(board)
+    else
+      player_chooses_square!(board)
+      break if someone_won?(board) || board_full?(board)
+      
+      computer_chooses_square!(board)
+      break if someone_won?(board) || board_full?(board)
+      display_board(board)
+    end
   end
 
   if someone_won?(board) && detect_winner(board) == "Player"
