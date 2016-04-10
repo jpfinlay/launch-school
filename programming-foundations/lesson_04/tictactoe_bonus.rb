@@ -1,4 +1,4 @@
-require 'pry' 
+require 'pry'
 
 INITIAL_MARKER = ' '.freeze
 PLAYER_MARKER = 'X'.freeze
@@ -6,20 +6,7 @@ COMPUTER_MARKER = 'O'.freeze
 WINNING_LINES = [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +   # cols
                 [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +   # rows
                 [[1, 5, 9], [3, 5, 7]]                # diagonals
-                
-FIRST = {:choose => true, :player => false, :computer => false }
-
-# TTT Bonus Feature 1.
-# Note: I created LS solution first but discounted it as it used Array#join,
-# which I thought was cheating!
-def joinor(array, delimiter=',', join_word="or")
-  return string = array[0].to_s if array.size == 1
-  string = ''
-  last = "#{join_word} " + array.pop.to_s
-  array.each { |el| string << el.to_s + delimiter + ' ' }
-  string += last
-  return string
-end
+FIRST = { choose: true, player: false, computer: false }.freeze
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -75,36 +62,8 @@ def computer_chooses_square!(brd)
   else
     choice = empty_squares(brd).sample
   end
-  return brd[choice] = COMPUTER_MARKER
+  brd[choice] = COMPUTER_MARKER
 end
-
-# Bonus Feature #4
-def computer_attack(brd)
-  square_number = false
-  WINNING_LINES.each do |line|
-    if brd.values_at(*line).count(COMPUTER_MARKER) == 2 && brd.values_at(*line).count(INITIAL_MARKER) == 1
-      line.each { |el| square_number = el if brd[el] != COMPUTER_MARKER }  # find the number needed to block
-    end
-  end
-  return square_number
-end
-
-# Bonus Feature # 3
-def immediate_threat?(brd)
-  square_number = false
-  WINNING_LINES.each do |line|
-    if brd.values_at(*line).count(PLAYER_MARKER) == 2 && brd.values_at(*line).count(INITIAL_MARKER) == 1
-      line.each { |el| square_number = el if brd[el] != PLAYER_MARKER }  # find the number needed to block
-    end
-  end
-  return square_number
-end
-
-# Bonus Feature #5
-def square_five_free?(brd)
-  return 5 if brd[5] == ' '
-end
-
 
 def detect_winner(brd)
   WINNING_LINES.each do |line|
@@ -122,63 +81,112 @@ def board_full?(brd)
   empty_squares(brd).empty?
 end
 
+# Bonus Feature #1
+# Note: I created LS solution first but discounted it as it used Array#join,
+# which I thought was cheating!
+def joinor(array, delimiter=',', join_word="or")
+  return string = array[0].to_s if array.size == 1
+  string = ''
+  last = "#{join_word} " + array.pop.to_s
+  array.each { |el| string << el.to_s + delimiter + ' ' }
+  string += last
+  string
+end
+
 # Bonus Feature #2
 def up_score
-  score += 1
+  score + 1
 end
 
 player_score = 0
 computer_score = 0
 
+# Bonus Feature #3
+def immediate_threat?(brd)
+  square_number = false
+  WINNING_LINES.each do |line|
+    if brd.values_at(*line).count(PLAYER_MARKER) == 2 && brd.values_at(*line).count(INITIAL_MARKER) == 1
+      line.each { |el| square_number = el if brd[el] != PLAYER_MARKER } # find the number needed to block
+    end
+  end
+  square_number
+end
+
+# Bonus Feature #4
+def computer_attack(brd)
+  square_number = false
+  WINNING_LINES.each do |line|
+    if brd.values_at(*line).count(COMPUTER_MARKER) == 2 && brd.values_at(*line).count(INITIAL_MARKER) == 1
+      line.each { |el| square_number = el if brd[el] != COMPUTER_MARKER } # find the number needed to block
+    end
+  end
+  square_number
+end
+
+# Bonus Feature #5
+def square_five_free?(brd)
+  return 5 if brd[5] == ' '
+end
+
+# Bonus Feature #6
+def alternate_player(current_player)
+  if current_player == 'c'
+    return 'p'
+  else
+    return 'c'
+  end
+end
+
+def choose_square!(brd, current_player)
+  if current_player == 'p'
+    player_chooses_square!(brd)
+  else
+    computer_chooses_square!(brd)
+  end
+end
+
 loop do
   first = ''
   board = initialize_board
   if FIRST[:choose] == true
-    prompt "Choose who goes first: (P)layer or (C)omputer: "
-    first = gets.chomp.downcase
+    loop do
+      prompt "Choose who goes first: (P)layer or (C)omputer: "
+      first = gets.chomp.to_s.downcase
+      break if first.include?('p') || first.include?('c')
+      prompt "Please choose either 'p' or 'c'"
+    end
   elsif FIRST[:player] == true
     first = 'p'
   else
     first = 'c'
   end
+  current_player = first
 
   loop do
     display_board(board)
-    if first == "c"
-      computer_chooses_square!(board)
-      break if someone_won?(board) || board_full?(board)
-      display_board(board)
-
-      player_chooses_square!(board)
-      break if someone_won?(board) || board_full?(board)
-    else
-      player_chooses_square!(board)
-      break if someone_won?(board) || board_full?(board)
-      
-      computer_chooses_square!(board)
-      break if someone_won?(board) || board_full?(board)
-      display_board(board)
-    end
+    choose_square!(board, current_player)
+    current_player = alternate_player(current_player)
+    break if someone_won?(board) || board_full?(board)
   end
 
   if someone_won?(board) && detect_winner(board) == "Player"
+    display_board(board)
     player_score += 1
     prompt "Player won!"
   elsif someone_won?(board) && detect_winner(board) == "Computer"
+    display_board(board)
     computer_score += 1
     prompt "Computer won!"
   else
+    display_board(board)
     prompt "It's a tie! No score."
   end
 
   prompt "Player #{player_score} - #{computer_score} Computer"
 
   sleep 2
-  display_board(board)
 
   break if player_score == 5 || computer_score == 5
-  # prompt "Play again? (y or n)"
-  # break unless gets.chomp.downcase.start_with?("y")
 end
 
 prompt "Thank you for playing Tic Tac Toe. Good bye!"
