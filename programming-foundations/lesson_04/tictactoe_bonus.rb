@@ -7,7 +7,7 @@ WINNING_LINES = [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +   # cols
                 [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +   # rows
                 [[1, 5, 9], [3, 5, 7]]                # diagonals
                 
-FIRST = "computer"
+FIRST = {:choose => true, :player => false, :computer => false }
 
 # TTT Bonus Feature 1.
 # Note: I created LS solution first but discounted it as it used Array#join,
@@ -131,11 +131,20 @@ player_score = 0
 computer_score = 0
 
 loop do
+  first = ''
   board = initialize_board
+  if FIRST[:choose] == true
+    prompt "Choose who goes first: (P)layer or (C)omputer: "
+    first = gets.chomp.downcase
+  elsif FIRST[:player] == true
+    first = 'p'
+  else
+    first = 'c'
+  end
 
   loop do
     display_board(board)
-    if FIRST == "computer"
+    if first == "c"
       computer_chooses_square!(board)
       break if someone_won?(board) || board_full?(board)
       display_board(board)
