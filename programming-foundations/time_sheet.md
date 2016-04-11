@@ -38,8 +38,6 @@
 | 22    | Sun, 10 | Lesson 4: Twenty One                            | 3.5       |
 |       |         | **WEEK 4 TOTAL HOURS**                          | **11.5**  |
 |       |         |                                                 |           |
-|       |         | **GRAND TOTAL HOURS**                           | **65.5**  |
-|       |         |                                                 |           |
 |       |         | **WEEK 5: 11 - 17 APRIL 2016**                  |           |
 | 23    | Mon, 11 | Lesson 4: Start Twenty One game                 | 2.5       |
 |       |         | **WEEK 5 TOTAL HOURS**                          | **2.5**   |
