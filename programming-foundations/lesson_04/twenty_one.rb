@@ -3,14 +3,15 @@ require 'pry'
 RANKS = %w(2 3 4 5 6 7 8 9 10 J Q K A).freeze
 SUITS = %w(C D H S).freeze
 
-def display_hands(player, dealer, count)
+def display_hands(player, dealer)
   system 'clear'
   puts ""
-  puts "TWNETY ONE".center(50,"-")
+  puts " T W E N T Y  O N E ".center(80,"-")
   puts ""
   puts "You have: #{player.flatten.join(', ')} (TOTAL: #{count(player.flatten)})"
   puts ""
   puts "Dealer's hand: #{dealer[0][0]}, HIDDEN"
+  puts ""
 end
 
 player = []
@@ -49,35 +50,55 @@ end
 
 def bust?(hand)
   score = count(hand)
-  return true if score > 21
+  return "BUST!" if score > 21
 end
 
-def hit_or_stay?(player, dealer, deck)
-  display_hands(player, dealer, count(player))
+def hit!(hand, deck)
+  hand << deck.shift 
+end
+
+def show_cards(hand)
+  hand.flatten.join('-')
+end
+
+deck = initialize_deck
+
+player << deal(deck)
+dealer << deal(deck)
+
+display_hands(player, dealer)
+
+loop do
+  display_hands(player, dealer)
   
-  loop do
-    puts "=> (h)it or (s)tay?"
-    input = gets.chomp.downcase
-    if input.start_with?('h')
-      player << deck.shift
-    elsif input.start_with?('s')
-      break puts "Stay on score."
-    else
-      puts "Sorry, that is not a valid choice."
-    end
-    display_hands(player, dealer, count(player))
-  end
+  puts "=> (h)it or (s)tay?"
+  input = gets.chomp.downcase
+  
+  player << deck.shift if input.start_with?('h')
+  break if bust?(player)
+  
+  if input.start_with?('s')
+    "Player stays on #{count(player)}."
+    break
+  end 
+  #puts "Sorry, that is not a valid choice."
 end
 
-# def show_cards(hand)
-#   hand.flatten!
+display_hands(player, dealer)
+
+if bust?(player)
+  puts "".center(80, '-')
+  puts "BUST! You lost :("
+  puts "Your hand was: #{show_cards(player)}, total #{count(player)}."
+  puts "Dealer's hand was: #{show_cards(dealer)}, total #{count(dealer)}."
+  puts "Good bye."
+else 
+  puts "Player has: #{count(player)}."
+  puts "Dealer has: #{show_cards(dealer)}."
+end
+  
+# loop do
+#   display_hands(player, dealer)
+#   break unless count(dealer) < 17
+#   dealer << deck.shift
 # end
-
-loop do # main game loop
-  deck = initialize_deck
-
-  player << deal(deck)
-  dealer << deal(deck)
-
-  hit_or_stay?(player, dealer, deck)
-end
