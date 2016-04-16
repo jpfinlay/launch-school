@@ -7,15 +7,16 @@ def prompt(msg)
   puts "=> #{msg}"
 end
 
-def display_hands(player, dealer)
+def display_hands(player, dealer, winner=nil)
   system 'clear'
   puts ""
   puts " T W E N T Y  O N E ".center(80, "-")
   puts ""
-  puts "You have: #{show_cards(player)} (TOTAL: #{count(player.flatten)})"
+  puts "Your hand: #{show_cards(player)} (TOTAL: #{count(player.flatten)})"
   puts ""
   puts "Dealer's hand: #{dealer[0][0]}, HIDDEN"
   puts ""
+  puts winner.to_s if winner
 end
 
 def initialize_deck
@@ -57,21 +58,21 @@ def count(hand)
 end
 
 def count_aces(score, aces)
-  if (aces == 1 && score <= 10)
+  if aces == 1 && score <= 10
     score += 11
-  elsif (aces == 1 && score > 10)
+  elsif aces == 1 && score > 10
     score += 1
-  elsif (aces == 2 && score <= 9)
+  elsif aces == 2 && score <= 9
     score += 12
-  elsif (aces == 2 && score > 9)
+  elsif aces == 2 && score > 9
     score += 2
-  elsif (aces == 3 && score <= 8)
+  elsif aces == 3 && score <= 8
     score += 13
-  elsif (aces == 3 && score > 8)
+  elsif aces == 3 && score > 8
     score += 3
-  elsif (aces == 4 && score <= 7)
+  elsif aces == 4 && score <= 7
     score += 14
-  elsif (aces == 4 && score > 7)
+  elsif aces == 4 && score > 7
     score += 4
   end
   score
@@ -79,28 +80,22 @@ end
 
 def bust?(hand)
   score = count(hand)
-  return true if score > 21 || false
+  return true if score > 21
 end
 
 def winner(player, dealer)
   winner = if bust?(player)
-             "You're bust. Dealer won!"
+             "You're bust. Dealer won with #{show_cards(dealer)} (TOTAL: #{count(dealer)})."
            elsif bust?(dealer)
-             "Dealer bust. You won!"
+             "You won! Dealer bust with #{show_cards(dealer)} (TOTAL: #{count(dealer)})."
            elsif count(player) > count(dealer)
-             "You won!"
+             "You won! Dealer had #{show_cards(dealer)} (TOTAL: #{count(dealer)})."
            elsif count(player) < count(dealer)
-             "Dealer won!"
+             "Dealer won with #{show_cards(dealer)} (TOTAL: #{count(dealer)})."
            else
-             "It's a tie."
+             "It's a tie. Dealer's hand was #{show_cards(dealer)} (TOTAL: #{count(dealer)})."
            end
-  system 'clear'
-  puts ""
-  puts " T W E N T Y  O N E ".center(80, "-")
-  puts ""
-  prompt(winner)
-  prompt("Your hand was: #{show_cards(player)}, total #{count(player)}.")
-  prompt("Dealer's hand was: #{show_cards(dealer)}, total #{count(dealer)}.")
+  display_hands(player, dealer, winner)
 end
 
 loop do
@@ -109,9 +104,6 @@ loop do
   dealer = []
   player << deal(deck)
   dealer << deal(deck)
-  
-  display_hands(player, dealer)
-  
   input = ''
   loop do
     display_hands(player, dealer)
@@ -121,22 +113,17 @@ loop do
     break if bust?(player)
     break if input.start_with?('s')
   end
-  
   loop do
-    break if bust?(player)  
-    if count(dealer) < 17 
+    break if bust?(player)
+    if count(dealer) < 17
       dealer << deck.shift
     else
       break
     end
   end
-  
-  display_hands(player, dealer)
   winner(player, dealer)
-  
   prompt("Another game? (y or n)")
   answer = gets.chomp
   break unless answer.start_with?('y')
 end
-
 prompt("Thank you for playing. Good bye.")
