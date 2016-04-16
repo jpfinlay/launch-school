@@ -1,1 +1,0 @@
-[{"severity":"error","location":{"begin_pos":1496,"end_pos":1501},"message":"unexpected token kFALSE\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)","cop_name":"Syntax","status":"uncorrected"}]
