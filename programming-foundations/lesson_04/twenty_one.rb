@@ -16,7 +16,7 @@ def display_hands(player, dealer, winner=nil)
   puts ""
   puts "Dealer's hand: #{dealer[0][0]}, HIDDEN"
   puts ""
-  puts winner.to_s if winner
+  puts winner if winner
 end
 
 def initialize_deck
