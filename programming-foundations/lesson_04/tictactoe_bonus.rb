@@ -12,7 +12,7 @@ def prompt(msg)
   puts "=> #{msg}"
 end
 
-# rubocop:disable all
+# rubocop:disable AbcSize
 def display_board(brd)
   system 'clear'
   puts "You are #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}"
@@ -29,7 +29,7 @@ def display_board(brd)
   puts "     |     |"
   puts ""
 end
-# rubocop:enable all
+# rubocop:enable AbcSize
 
 def initialize_board
   new_board = {}
@@ -53,15 +53,10 @@ def player_chooses_square!(brd)
 end
 
 def computer_chooses_square!(brd)
-  if computer_attack(brd)
-    choice = computer_attack(brd)
-  elsif immediate_threat?(brd)
-    choice = immediate_threat?(brd)
-  elsif square_five_free?(brd)
-    choice = square_five_free?(brd)
-  else
-    choice = empty_squares(brd).sample
-  end
+  choice = computer_attack(brd) ||
+           immediate_threat?(brd) ||
+           square_five_free?(brd) ||
+           empty_squares(brd).sample
   brd[choice] = COMPUTER_MARKER
 end
 
@@ -91,14 +86,9 @@ def joinor(array, delimiter=',', join_word="or")
   array.each { |el| string << el.to_s + delimiter + ' ' }
   string.chop!.chop!
   string += last
-  string
 end
 
 # Bonus Feature #2
-def up_score
-  score + 1
-end
-
 player_score = 0
 computer_score = 0
 
@@ -132,9 +122,9 @@ end
 # Bonus Feature #6
 def alternate_player(current_player)
   if current_player == 'c'
-    return 'p'
+    'p'
   else
-    return 'c'
+    'c'
   end
 end
 
@@ -164,10 +154,10 @@ loop do
   else
     answer = 'c'
   end
-  
+
   current_player = answer
   break if answer == 'q'
-  
+
   loop do
     display_board(board)
     choose_square!(board, current_player)
