@@ -80,7 +80,7 @@ end
 # Note: I created LS solution first but discounted it as it used Array#join,
 # which I thought was cheating!
 def joinor(array, delimiter=',', join_word="or")
-  return string = array[0].to_s if array.size == 1
+  return array[0].to_s if array.size == 1
   string = ''
   last = ' ' + join_word.to_s + ' ' + array.pop.to_s
   array.each { |el| string << el.to_s + delimiter + ' ' }
