@@ -146,22 +146,27 @@ def choose_square!(brd, current_player)
 end
 
 loop do
-  first = ''
+  answer = ''
   board = initialize_board
   if FIRST[:choose] == true
     loop do
-      prompt "Choose who goes first: (P)layer or (C)omputer: "
-      first = gets.chomp.to_s.downcase
-      break if first.include?('p') || first.include?('c')
-      prompt "Please choose either 'p' or 'c'"
+      system 'clear'
+      prompt "Choose who goes first: (P)layer or (C)omputer (or type Q to quit): "
+      answer = gets.chomp.downcase
+      break if answer == 'p' || answer == 'c'
+      break if answer == 'q'
+      system 'clear'
+      prompt "Please choose either 'P', 'C' or 'Q' to quit."
     end
   elsif FIRST[:player] == true
-    first = 'p'
+    answer = 'p'
   else
-    first = 'c'
+    answer = 'c'
   end
-  current_player = first
-
+  
+  current_player = answer
+  break if answer == 'q'
+  
   loop do
     display_board(board)
     choose_square!(board, current_player)
