@@ -92,23 +92,22 @@ end
 player_score = 0
 computer_score = 0
 
+
 # Bonus Feature #3
 def immediate_threat?(brd)
-  square_number = false
-  WINNING_LINES.each do |line|
-    if brd.values_at(*line).count(PLAYER_MARKER) == 2 && brd.values_at(*line).count(INITIAL_MARKER) == 1
-      line.each { |el| square_number = el if brd[el] != PLAYER_MARKER } # find the number needed to block
-    end
-  end
-  square_number
+  find_best_square(brd, PLAYER_MARKER)
 end
 
 # Bonus Feature #4
 def computer_attack(brd)
+  find_best_square(brd, COMPUTER_MARKER)
+end
+
+def find_best_square(brd, marker)
   square_number = false
-  WINNING_LINES.each do |line|
-    if brd.values_at(*line).count(COMPUTER_MARKER) == 2 && brd.values_at(*line).count(INITIAL_MARKER) == 1
-      line.each { |el| square_number = el if brd[el] != COMPUTER_MARKER } # find the number needed to block
+   WINNING_LINES.each do |line|
+    if brd.values_at(*line).count(marker) == 2 && brd.values_at(*line).count(INITIAL_MARKER) == 1
+      line.each { |el| square_number = el if brd[el] != marker } # find the number needed to block
     end
   end
   square_number
