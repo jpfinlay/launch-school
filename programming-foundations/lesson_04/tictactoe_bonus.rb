@@ -1,5 +1,4 @@
-require 'pry'
-
+# tictactoe_bonus.rb - A Tic Tac Toe Game
 INITIAL_MARKER = ' '.freeze
 PLAYER_MARKER = 'X'.freeze
 COMPUTER_MARKER = 'O'.freeze
@@ -13,9 +12,13 @@ def prompt(msg)
 end
 
 # rubocop:disable AbcSize
-def display_board(brd)
+def display_board(brd, player_score, computer_score)
   system 'clear'
-  puts "You are #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}"
+  puts " TIC TAC TOE ".center(50, '-')
+  puts "You are '#{PLAYER_MARKER}'. Computer is '#{COMPUTER_MARKER}'.".center(50)
+  puts "-".center(50, '-')
+  puts "You #{player_score} - #{computer_score} Computer".center(50)
+  puts "-".center(50, '-')
   puts "     |     |"
   puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}"
   puts "     |     |"
@@ -159,30 +162,30 @@ loop do
   break if answer == 'q'
 
   loop do
-    display_board(board)
+    display_board(board, player_score, computer_score)
     choose_square!(board, current_player)
     current_player = alternate_player(current_player)
     break if someone_won?(board) || board_full?(board)
   end
 
   if someone_won?(board) && detect_winner(board) == "Player"
-    display_board(board)
+    display_board(board, player_score, computer_score)
     player_score += 1
     prompt "Player won!"
   elsif someone_won?(board) && detect_winner(board) == "Computer"
-    display_board(board)
+    display_board(board, player_score, computer_score)
     computer_score += 1
     prompt "Computer won!"
   else
-    display_board(board)
+    display_board(board, player_score, computer_score)
     prompt "It's a tie! No score."
   end
 
-  prompt "Player #{player_score} - #{computer_score} Computer"
-
-  sleep 2
+  sleep 1
+  prompt "You #{player_score} - #{computer_score} Computer"
+  sleep 1
 
   break if player_score == 5 || computer_score == 5
 end
 
-prompt "Thank you for playing Tic Tac Toe. Good bye!"
+prompt "Thank you for playing Tic Tac Toe. The only way to win is not to play..."
