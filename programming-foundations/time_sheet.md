@@ -43,7 +43,11 @@
 | 24    | Tue, 12 | Lesson 4: Continue Twenty One game                  | 3         |
 | 25    | Wed, 13 | Lesson 4: Finish first iteration of Twenty One game | 4         |
 | 26    | Sat, 16 | Lesson 4: Fix bugs in Twenty One game               | 6         |
-| 27    | Sun, 17 | Lesson 4: Fix bugs Tica Tac Toe after feedback      | 2         |
+| 27    | Sun, 17 | Lesson 4: Fix bugs in Tic Tac Toe after feedback    | 2         |
 |       |         | **WEEK 5 TOTAL HOURS**                              | **17.5**  |
 |       |         |                                                     |           |
-|       |         | **GRAND TOTAL HOURS**                               | **83**    |
+|       |         | **WEEK 6: 18 - 24 APRIL 2016**                      |           |
+| 28    | Mon, 18 | Lesson 4: Fix bugs in Tic Tac Toe after feedback    | 1.5       |
+|       |         | **WEEK 6 TOTAL HOURS**                              | **1.5**   |
+|       |         |                                                     |           |
+|       |         | **GRAND TOTAL HOURS**                               | **84.5**  |
