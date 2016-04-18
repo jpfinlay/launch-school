@@ -102,11 +102,13 @@ def computer_attack(brd)
   find_best_square(brd, COMPUTER_MARKER)
 end
 
+# Iterate available board numbers to find the square needed to block or attack
 def find_best_square(brd, marker)
   square_number = false
   WINNING_LINES.each do |line|
-    if brd.values_at(*line).count(marker) == 2 && brd.values_at(*line).count(INITIAL_MARKER) == 1
-      line.each { |el| square_number = el if brd[el] != marker } # find the number needed to block
+    if brd.values_at(*line).count(marker) == 2 &&
+       brd.values_at(*line).count(INITIAL_MARKER) == 1
+      line.each { |el| square_number = el if brd[el] != marker }
     end
   end
   square_number
