@@ -13,7 +13,7 @@ def display_hands(player, dealer, winner=nil)
   puts ""
   puts " T W E N T Y  O N E ".center(80, "-")
   puts ""
-  puts "Your hand: #{show_cards(player)} (TOTAL: #{count(player.flatten)})"
+  puts "Your hand: #{show_cards(player)} (TOTAL: #{compute_points(player.flatten)})"
   puts ""
   puts "Dealer's hand: #{dealer[0][0]}, HIDDEN"
   puts ""
@@ -42,7 +42,7 @@ def remove_suits(hand)
   numbers
 end
 
-def count(hand)
+def compute_points(hand)
   score = 0
   aces = 0
   cards = remove_suits(hand)
@@ -80,21 +80,21 @@ def count_aces(score, aces)
 end
 
 def bust?(hand)
-  score = count(hand)
+  score = compute_points(hand)
   return true if score > 21
 end
 
 def winner(player, dealer)
   winner = if bust?(player)
-             "You're bust. Dealer won with #{show_cards(dealer)} (TOTAL: #{count(dealer)})."
+             "You're bust. Dealer won with #{show_cards(dealer)} (TOTAL: #{compute_points(dealer)})."
            elsif bust?(dealer)
-             "You won! Dealer bust with #{show_cards(dealer)} (TOTAL: #{count(dealer)})."
-           elsif count(player) > count(dealer)
-             "You won! Dealer had #{show_cards(dealer)} (TOTAL: #{count(dealer)})."
-           elsif count(player) < count(dealer)
-             "Dealer won with #{show_cards(dealer)} (TOTAL: #{count(dealer)})."
+             "You won! Dealer bust with #{show_cards(dealer)} (TOTAL: #{compute_points(dealer)})."
+           elsif compute_points(player) > compute_points(dealer)
+             "You won! Dealer had #{show_cards(dealer)} (TOTAL: #{compute_points(dealer)})."
+           elsif compute_points(player) < compute_points(dealer)
+             "Dealer won with #{show_cards(dealer)} (TOTAL: #{compute_points(dealer)})."
            else
-             "It's a tie. Dealer's hand was #{show_cards(dealer)} (TOTAL: #{count(dealer)})."
+             "It's a tie. Dealer's hand was #{show_cards(dealer)} (TOTAL: #{compute_points(dealer)})."
            end
   display_hands(player, dealer, winner)
 end
@@ -118,7 +118,7 @@ loop do
   
   loop do
     break if bust?(player)
-    if count(dealer) < 17
+    if compute_points(dealer) < 17
       dealer << deck.shift
     else
       break
