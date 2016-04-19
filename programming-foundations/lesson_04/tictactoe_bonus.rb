@@ -57,7 +57,7 @@ end
 
 def computer_chooses_square!(brd)
   choice = computer_attack(brd) ||
-           immediate_threat?(brd) ||
+           immediate_threat(brd) ||
            square_five_free?(brd) ||
            empty_squares(brd).sample
   brd[choice] = COMPUTER_MARKER
@@ -65,8 +65,8 @@ end
 
 def detect_winner(brd)
   WINNING_LINES.each do |line|
-    return 'Player' if brd.values_at(*line).count(PLAYER_MARKER) == 3
-    return 'Computer' if brd.values_at(*line).count(COMPUTER_MARKER) == 3
+    return 'Player' if count_markers(brd, line, PLAYER_MARKER) == 3
+    return 'Computer' if count_markers(brd, line, COMPUTER_MARKER) == 3
   end
   nil
 end
@@ -96,7 +96,7 @@ player_score = 0
 computer_score = 0
 
 # Bonus Feature #3
-def immediate_threat?(brd)
+def immediate_threat(brd)
   find_best_square(brd, PLAYER_MARKER)
 end
 
@@ -106,11 +106,15 @@ def computer_attack(brd)
 end
 
 # Iterate available board numbers to find the square needed to block or attack
+def count_markers(brd, line, marker)
+  brd.values_at(*line).count(marker)
+end
+
 def find_best_square(brd, marker)
   square_number = false
   WINNING_LINES.each do |line|
-    if brd.values_at(*line).count(marker) == 2 &&
-       brd.values_at(*line).count(INITIAL_MARKER) == 1
+    if count_markers(brd, line, marker) == 2 &&
+       count_markers(brd, line, INITIAL_MARKER) == 1
       line.each { |el| square_number = el if brd[el] != marker }
     end
   end
@@ -147,8 +151,7 @@ loop do
       system 'clear'
       prompt "Choose who goes first: (P)layer or (C)omputer (or type Q to quit): "
       answer = gets.chomp.downcase
-      break if answer == 'p' || answer == 'c'
-      break if answer == 'q'
+      break if %w(p c q).include? answer
       system 'clear'
       prompt "Please choose either 'P', 'C' or 'Q' to quit."
     end
