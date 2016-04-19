@@ -86,19 +86,19 @@ end
 
 def winner(player, dealer)
   winner = if bust?(player)
-             "You're bust. Dealer won with #{show_cards(dealer)} " + 
+             "You're bust. Dealer won with #{show_cards(dealer)} " \
              "(TOTAL: #{compute_points(dealer)})."
            elsif bust?(dealer)
-             "You won! Dealer bust with #{show_cards(dealer)} " + 
+             "You won! Dealer bust with #{show_cards(dealer)} " \
              "(TOTAL: #{compute_points(dealer)})."
            elsif compute_points(player) > compute_points(dealer)
-             "You won! Dealer had #{show_cards(dealer)} " + 
+             "You won! Dealer had #{show_cards(dealer)} " \
              "(TOTAL: #{compute_points(dealer)})."
            elsif compute_points(player) < compute_points(dealer)
-             "Dealer won with #{show_cards(dealer)} " +
+             "Dealer won with #{show_cards(dealer)} " \
              "(TOTAL: #{compute_points(dealer)})."
            else
-             "It's a tie. Dealer's hand was #{show_cards(dealer)} " + 
+             "It's a tie. Dealer's hand was #{show_cards(dealer)} " \
              "(TOTAL: #{compute_points(dealer)})."
            end
   display_hands(player, dealer, winner)
@@ -110,7 +110,7 @@ loop do
   dealer = []
   player << deal(deck)
   dealer << deal(deck)
-  
+
   input = ''
   loop do
     display_hands(player, dealer)
@@ -120,7 +120,7 @@ loop do
     break if bust?(player)
     break if input.start_with?('s')
   end
-  
+
   loop do
     break if bust?(player)
     if compute_points(dealer) < 17
@@ -129,15 +129,14 @@ loop do
       break
     end
   end
-  
+
   winner(player, dealer)
-  
+
   play_again = ''
   loop do
     prompt "Another game? (Y)es or (N)o."
     play_again = gets.chomp
-    break if play_again.downcase.start_with?('y') ||
-             play_again.downcase.start_with?('n')
+    break if play_again.downcase.start_with?('y', 'n')
     prompt "Please type 'y' to play again or 'n' to quit."
   end
   break if play_again == 'n'
