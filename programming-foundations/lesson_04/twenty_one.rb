@@ -86,15 +86,20 @@ end
 
 def winner(player, dealer)
   winner = if bust?(player)
-             "You're bust. Dealer won with #{show_cards(dealer)} (TOTAL: #{compute_points(dealer)})."
+             "You're bust. Dealer won with #{show_cards(dealer)} " + 
+             "(TOTAL: #{compute_points(dealer)})."
            elsif bust?(dealer)
-             "You won! Dealer bust with #{show_cards(dealer)} (TOTAL: #{compute_points(dealer)})."
+             "You won! Dealer bust with #{show_cards(dealer)} " + 
+             "(TOTAL: #{compute_points(dealer)})."
            elsif compute_points(player) > compute_points(dealer)
-             "You won! Dealer had #{show_cards(dealer)} (TOTAL: #{compute_points(dealer)})."
+             "You won! Dealer had #{show_cards(dealer)} " + 
+             "(TOTAL: #{compute_points(dealer)})."
            elsif compute_points(player) < compute_points(dealer)
-             "Dealer won with #{show_cards(dealer)} (TOTAL: #{compute_points(dealer)})."
+             "Dealer won with #{show_cards(dealer)} " +
+             "(TOTAL: #{compute_points(dealer)})."
            else
-             "It's a tie. Dealer's hand was #{show_cards(dealer)} (TOTAL: #{compute_points(dealer)})."
+             "It's a tie. Dealer's hand was #{show_cards(dealer)} " + 
+             "(TOTAL: #{compute_points(dealer)})."
            end
   display_hands(player, dealer, winner)
 end
