@@ -1,3 +1,4 @@
+# twenty_one.rb - A Blackjack Game
 require 'pry'
 
 RANKS = %w(2 3 4 5 6 7 8 9 10 J Q K A).freeze
@@ -104,6 +105,7 @@ loop do
   dealer = []
   player << deal(deck)
   dealer << deal(deck)
+  
   input = ''
   loop do
     display_hands(player, dealer)
@@ -113,6 +115,7 @@ loop do
     break if bust?(player)
     break if input.start_with?('s')
   end
+  
   loop do
     break if bust?(player)
     if count(dealer) < 17
@@ -121,9 +124,17 @@ loop do
       break
     end
   end
+  
   winner(player, dealer)
-  prompt("Another game? (y or n)")
-  answer = gets.chomp
-  break unless answer.start_with?('y')
+  
+  play_again = ''
+  loop do
+    prompt "Another game? (Y)es or (N)o."
+    play_again = gets.chomp
+    break if play_again.downcase.start_with?('y') ||
+             play_again.downcase.start_with?('n')
+    prompt "Please type 'y' to play again or 'n' to quit."
+  end
+  break if play_again == 'n'
 end
-prompt("Thank you for playing. Good bye.")
+prompt "Thank you for playing. Good bye."
