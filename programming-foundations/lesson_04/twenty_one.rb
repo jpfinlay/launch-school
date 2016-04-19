@@ -51,30 +51,15 @@ def compute_points(hand)
       score += 10
     elsif card =~ /[A]/
       aces += 1
+      score += 11
     else
       score += card.to_i
     end
   end
-  count_aces(score, aces)
-end
-
-def count_aces(score, aces)
-  if aces == 1 && score <= 10
-    score += 11
-  elsif aces == 1 && score > 10
-    score += 1
-  elsif aces == 2 && score <= 9
-    score += 12
-  elsif aces == 2 && score > 9
-    score += 2
-  elsif aces == 3 && score <= 8
-    score += 13
-  elsif aces == 3 && score > 8
-    score += 3
-  elsif aces == 4 && score <= 7
-    score += 14
-  elsif aces == 4 && score > 7
-    score += 4
+  if score > 21 && aces == 1
+    score -= 10
+  elsif score > 21 && aces > 1
+    score -= 10 * aces
   end
   score
 end
