@@ -1,4 +1,5 @@
 # twenty_one.rb - A Blackjack Game
+require 'pry'
 
 RANKS = %w(2 3 4 5 6 7 8 9 10 J Q K A).freeze
 SUITS = %w(C D H S).freeze
@@ -10,7 +11,7 @@ end
 def display_hands(player, dealer, winner=nil)
   system 'clear'
   puts ""
-  puts " T W E N T Y  O N E ".center(80, "-")
+  puts " T W E N T Y  O N E ".center(50, "-")
   puts ""
   puts "Your hand: #{show_cards(player)} (TOTAL: #{compute_points(player.flatten)})"
   puts ""
@@ -41,24 +42,26 @@ def remove_suits(hand)
   numbers
 end
 
-def compute_points(hand)
-  score = 0
-  aces = 0
-  cards = remove_suits(hand)
-  cards.each do |card|
-    if card =~ /[JQK]/
-      score += 10
-    elsif card =~ /[A]/
-      aces += 1
-      score += 11
-    else
-      score += card.to_i
-    end
+def points_for_card(card, score)
+  if card =~ /[JQK]/
+     10
+  elsif card =~ /[A]/
+    11
+  else
+    card.to_i
   end
-  if score > 21 && aces == 1
-    score -= 10
-  elsif score > 21 && aces > 1
-    score -= 10 * aces
+end
+
+def compute_points(hand)
+  cards = remove_suits(hand)
+  score = 0
+  cards.each { |card| score += points_for_card(card, score) }
+  adjust_aces(cards, score)
+end
+
+def adjust_aces(cards, score)
+  cards.each do |card| 
+    score -= 10 if card =~ /[A]/ && score > 21
   end
   score
 end
@@ -98,11 +101,11 @@ loop do
   input = ''
   loop do
     display_hands(player, dealer)
-    prompt("(h)it or (s)tay?")
+    prompt "Please type 'h' to hit or 's' to stay."
     input = gets.chomp.downcase
     player << deck.shift if input.start_with?('h')
-    break if bust?(player)
     break if input.start_with?('s')
+    break if bust?(player)
   end
 
   loop do
