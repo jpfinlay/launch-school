@@ -42,9 +42,9 @@ def remove_suits(hand)
   numbers
 end
 
-def points_for_card(card, score)
+def points_for_card(card)
   if card =~ /[JQK]/
-     10
+    10
   elsif card =~ /[A]/
     11
   else
@@ -55,12 +55,12 @@ end
 def compute_points(hand)
   cards = remove_suits(hand)
   score = 0
-  cards.each { |card| score += points_for_card(card, score) }
+  cards.each { |card| score += points_for_card(card) }
   adjust_aces(cards, score)
 end
 
 def adjust_aces(cards, score)
-  cards.each do |card| 
+  cards.each do |card|
     score -= 10 if card =~ /[A]/ && score > 21
   end
   score
@@ -91,6 +91,19 @@ def winner(player, dealer)
   display_hands(player, dealer, winner)
 end
 
+def get_user_choice(player, dealer, deck)
+  input = ''
+  loop do
+    display_hands(player, dealer)
+    prompt "Choose (h)it, (s)tay or (q)uit."
+    input = gets.chomp.downcase
+    player << deck.shift if input.start_with?('h')
+    break if input.start_with?('s', 'q') ||
+             bust?(player)
+  end
+  input
+end
+
 loop do
   deck = initialize_deck
   player = []
@@ -98,15 +111,8 @@ loop do
   player << deal(deck)
   dealer << deal(deck)
 
-  input = ''
-  loop do
-    display_hands(player, dealer)
-    prompt "Please type 'h' to hit or 's' to stay."
-    input = gets.chomp.downcase
-    player << deck.shift if input.start_with?('h')
-    break if input.start_with?('s')
-    break if bust?(player)
-  end
+  input = get_user_choice(player, dealer, deck)
+  break if input.start_with?('q')
 
   loop do
     break if bust?(player)
