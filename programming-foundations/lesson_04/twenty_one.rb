@@ -104,6 +104,16 @@ def get_user_choice(player, dealer, deck)
   input
 end
 
+def dealer_turn(player, dealer, deck)
+  loop do
+    break if bust?(player)
+    dealer << deck.shift if compute_points(dealer) < 17
+    break
+  end
+  dealer
+end
+
+
 loop do
   deck = initialize_deck
   player = []
@@ -114,15 +124,7 @@ loop do
   input = get_user_choice(player, dealer, deck)
   break if input.start_with?('q')
 
-  loop do
-    break if bust?(player)
-    if compute_points(dealer) < 17
-      dealer << deck.shift
-    else
-      break
-    end
-  end
-
+  dealer_turn(player, dealer, deck)
   winner(player, dealer)
 
   play_again = ''
