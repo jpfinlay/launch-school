@@ -107,14 +107,24 @@ end
 def dealer_turn(player, dealer, deck)
   loop do
     break if bust?(player)
-    dealer << deck.shift if compute_points(dealer) < 17
+    dealer << deck.shift while compute_points(dealer) < 17
     break
   end
   dealer
 end
 
+def play_again
+  answer = ''
+  loop do
+    prompt "Another game? (Y)es or (N)o."
+    answer = gets.chomp
+    break if answer.downcase.start_with?('y', 'n')
+    prompt "Please type 'y' to play again or 'n' to quit."
+  end
+  answer
+end
 
-loop do
+loop do # main loop
   deck = initialize_deck
   player = []
   dealer = []
@@ -126,14 +136,8 @@ loop do
 
   dealer_turn(player, dealer, deck)
   winner(player, dealer)
-
-  play_again = ''
-  loop do
-    prompt "Another game? (Y)es or (N)o."
-    play_again = gets.chomp
-    break if play_again.downcase.start_with?('y', 'n')
-    prompt "Please type 'y' to play again or 'n' to quit."
-  end
-  break if play_again == 'n'
+  
+  answer = play_again
+  break if answer == 'n'
 end
 prompt "Thank you for playing. Good bye."
