@@ -136,7 +136,7 @@ loop do # main loop
 
   dealer_turn(player, dealer, deck)
   winner(player, dealer)
-  
+
   answer = play_again
   break if answer == 'n'
 end
