@@ -96,9 +96,16 @@ def get_user_choice(player, dealer, deck)
     display_hands(player, dealer)
     prompt "Choose (h)it, (s)tay or (q)uit."
     input = gets.chomp.downcase
-    player << deck.shift if input.start_with?('h')
-    break if input.start_with?('s', 'q') ||
-             bust?(player)
+    if input.start_with?('s', 'q')
+      break
+    elsif input.start_with?('h')
+      player << deck.shift
+      break if bust?(player)
+    else
+      system 'clear'
+      puts "Incorrect input. Please choose 'h', 's' or 'q' at the prompt."
+      sleep 1.5
+    end
   end
   input
 end
