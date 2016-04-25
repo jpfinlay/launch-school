@@ -1,5 +1,5 @@
 # twenty_one.rb - A Blackjack Game
-
+require 'pry'
 RANKS = %w(2 3 4 5 6 7 8 9 10 J Q K A).freeze
 SUITS = %w(C D H S).freeze
 
@@ -14,7 +14,7 @@ def display_hands(player, dealer, winner=nil)
   puts ""
   puts "Your hand: #{show_cards(player)} (TOTAL: #{compute_points(player.flatten)})"
   puts ""
-  puts "Dealer's hand: #{dealer[0][0]}, HIDDEN"
+  puts "Dealer's hand: #{show_cards(dealer)[0..1]}, HIDDEN"
   puts ""
   puts winner if winner
 end
@@ -35,19 +35,17 @@ def show_cards(hand)
 end
 
 def remove_suits(hand)
-  numbers = hand.flatten.each do |card|
-    card.gsub(/[CDHS]/, '')
-  end
-  numbers
+  hand.flatten!
+  cards = []
+  hand.map { |c| cards << c.dup }
+  cards.each { |c| c.gsub!(/[CDHS]/, '') }
 end
 
 def points_for_card(card)
-  if card =~ /[JQK]/
-    10
-  elsif card =~ /[A]/
-    11
-  else
-    card.to_i
+  case card
+  when "J", "Q", "K" then 10
+  when "A" then 11
+  else card.to_i
   end
 end
 
@@ -60,7 +58,7 @@ end
 
 def adjust_aces(cards, score)
   cards.each do |card|
-    score -= 10 if card =~ /[A]/ && score > 21
+    score -= 10 if card == 'A' && score > 21
   end
   score
 end
@@ -90,7 +88,7 @@ def winner(player, dealer)
   display_hands(player, dealer, winner)
 end
 
-def get_user_choice(player, dealer, deck)
+def player_turn(player, dealer, deck)
   input = ''
   loop do
     display_hands(player, dealer)
@@ -137,7 +135,7 @@ loop do # main loop
   player << deal(deck)
   dealer << deal(deck)
 
-  input = get_user_choice(player, dealer, deck)
+  input = player_turn(player, dealer, deck)
   break if input.start_with?('q')
 
   dealer_turn(player, dealer, deck)
