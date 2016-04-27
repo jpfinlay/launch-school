@@ -1,28 +1,26 @@
 # Bonus Features
 
-# Q1. Why can't we just replace all calls to total with a local variable? 
-# What's the key to watch out for when using a local variable to cache 
+# Q1. Why can't we just replace all calls to total with a local variable?
+# What's the key to watch out for when using a local variable to cache
 # expensive calculations?
 
 # A1. Calls to #total cannot be replaced with a local variable everywhere since
 # the variable scope will change when it's called inside vs outside a loop
 # or elsewhere in the source code.
 
-# Q2. We use the play_again? three times: after the player busts, after the 
-# dealer busts, or after both participants stay and compare cards. Why is the 
+# Q2. We use the play_again? three times: after the player busts, after the
+# dealer busts, or after both participants stay and compare cards. Why is the
 # last call to play_again? a little different from the previous two?
 
 # A2. The first two calls to #play_again? uses the ternary operator and in the
-# first instance asks if the boolean return value from the method is true THEN 
-# the outer loop starts again at the beginning (a new game) OTHERWISE the main 
+# first instance asks if the boolean return value from the method is true THEN
+# the outer loop starts again at the beginning (a new game) OTHERWISE the main
 # loop is broken out of and the program ends. The last call to #play_again?
 # says 'break unless #play_again? is true' - in other words the first option is
 # to quit the game and only repeat the game loop if play_again? is true.
 
-require 'pry'
-
-SUITS = ['H', 'D', 'S', 'C']
-VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+SUITS = ['H', 'D', 'S', 'C'].freeze
+VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'].freeze
 
 player_score = 0
 dealer_score = 0
@@ -104,23 +102,25 @@ def compare_cards(dealer_cards, player_cards)
   puts "=".center(60, '=')
 end
 
-# def play_again?
-#   prompt "Do you want to play again? (y or n)"
-#   answer = gets.chomp
-#   answer.downcase.start_with?('y')
-# end
-
 def display_scores(player_score, dealer_score)
   puts "=".center(60, '=')
-  puts "Scores: You (#{player_score}) - (#{dealer_score}) Dealer."
+  puts "Score: You (#{player_score}) - (#{dealer_score}) Dealer."
   puts "=".center(60, '=')
-  sleep 2
+  sleep 1
 end
 
-prompt "Welcome to Twenty-One!"
+system 'clear'
+puts "=".center(60, '=')
+puts "Welcome to Twenty One (w/bonus features!)"
+puts "=".center(60, '=')
+sleep 2
 
 loop do
+  # display scores and check for winner
+  system 'clear'
   display_scores(player_score, dealer_score)
+  break if player_score == 5 || dealer_score == 5
+
   # initialize vars
   deck = initialize_deck
   player_cards = []
@@ -151,15 +151,15 @@ loop do
       prompt "Your cards are now: #{player_cards}"
       prompt "Your total is now: #{total(player_cards)}"
     end
-
     break if player_turn == 's' || busted?(player_cards)
   end
 
   if busted?(player_cards)
+    dealer_score += 1
     display_result(dealer_cards, player_cards)
     compare_cards(dealer_cards, player_cards)
-    dealer_score += 1
-    #play_again? ? next : break
+    sleep 5
+    next
   else
     prompt "You stayed at #{total(player_cards)}"
   end
@@ -169,30 +169,35 @@ loop do
 
   loop do
     break if busted?(dealer_cards) || total(dealer_cards) >= 17
-
     prompt "Dealer hits!"
     dealer_cards << deck.pop
     prompt "Dealer's cards are now: #{dealer_cards}"
   end
 
-  dealer_total = total(dealer_cards) # cache dealer's total in a variable
+  # cache dealer and player totals in variables
+  dealer_total = total(dealer_cards)
+  player_total = total(player_cards)
+
   if busted?(dealer_cards)
-    prompt "Dealer total is now: #{dealer_total}"
+    player_score += 1
     display_result(dealer_cards, player_cards)
     compare_cards(dealer_cards, player_cards)
-    player_score += 1
-    #play_again? ? next : break
+    sleep 5
+    next
   else
     prompt "Dealer stays at #{dealer_total}"
   end
 
   # Both player and dealer stays - compare cards!
   compare_cards(dealer_cards, player_cards)
+  if dealer_total > player_total
+    dealer_score += 1
+  elsif player_total > dealer_total
+    player_score += 1
+  end
+
   display_result(dealer_cards, player_cards)
-  
-  break if player_score == 5 || dealer_score == 5
-  #break unless play_again?
+  sleep 5
 end
 
-display_scores(player_score, dealer_score)
 prompt "Thank you for playing Twenty-One! Good bye!"
