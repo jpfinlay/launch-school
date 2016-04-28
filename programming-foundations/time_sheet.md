@@ -56,3 +56,11 @@
 | 31    | Sun, 24 | Lesson 4: Fix bugs in Tic Tac Toe after feedback    | 2         |
 |       |         | **WEEK 6 TOTAL HOURS**                              | **11.5**  |
 |       |         | *Total hours (running)*                             | *93.5*    |
+|       |         |                                                     |           |
+|       |         | **WEEK 7: 25 APRIL - 1 MAY 2016**                   |           |
+| 28    | Mon, 25 | Lesson 4: Twenty One Bonus Features                 | 1         |
+| 29    | Tue, 26 | Lesson 4: Twenty One Bonus Features                 | 2.5       |
+| 30    | Wed, 27 | Lesson 4: Twenty One Bonus Features                 | 2         |
+| 31    | Thu, 28 | Lesson 4: Twenty One Bonus Features                 | 1.5       |
+|       |         | **WEEK 6 TOTAL HOURS**                              | **7**     |
+|       |         | *Total hours (running)*                             | *----*    |
