@@ -12,7 +12,7 @@
 # dealer busts, or after both participants stay and compare cards. Why is the
 # last call to play_again? a little different from the previous two?
 
-# A2. The last call to play_again? *assumes* "false" unless play_again? evaluates 
+# A2. The last call to play_again? *assumes* "false" unless play_again? evaluates
 # true. The other two calls use the ternary operator and do not assume either true
 # or false to begin with, rather play_again? is evaluated first and then a decision
 # is made based on whether the return value is true or not.
@@ -27,6 +27,7 @@ dealer_score = 0
 
 def prompt(msg)
   puts "=> #{msg}"
+  sleep 1
 end
 
 def initialize_deck
@@ -96,28 +97,28 @@ def display_result(dealer_cards, player_cards)
 end
 
 def compare_cards(dealer_cards, player_cards)
-  puts "=".center(60, '=')
-  prompt "Dealer had #{dealer_cards}, for a total of: #{total(dealer_cards)}"
-  prompt "Player had #{player_cards}, for a total of: #{total(player_cards)}"
-  puts "=".center(60, '=')
+  display(
+    "Dealer had #{dealer_cards}, for a total of: #{total(dealer_cards)}\n" \
+    "Player had #{player_cards}, for a total of: #{total(player_cards)}"
+  )
+end
+
+def display(msg)
+  system 'clear'
+  puts "=".center(msg.length, '=')
+  puts msg
+  puts "=".center(msg.length, '=')
+  sleep 2
 end
 
 def display_scores(player_score, dealer_score)
-  puts "=".center(60, '=')
-  puts "Score: You (#{player_score}) - (#{dealer_score}) Dealer."
-  puts "=".center(60, '=')
-  sleep 1
+  display("Score: You (#{player_score}) - (#{dealer_score}) Dealer.")
 end
 
-system 'clear'
-puts "=".center(60, '=')
-puts "Welcome to Twenty One (w/bonus features!)"
-puts "=".center(60, '=')
-sleep 2
+display("Welcome to Twenty One (w/bonus features!)")
 
 loop do
   # display scores and check for winner
-  system 'clear'
   display_scores(player_score, dealer_score)
   break if player_score == 5 || dealer_score == 5
 
@@ -161,7 +162,6 @@ loop do
     dealer_score += 1
     display_result(dealer_cards, player_cards)
     compare_cards(dealer_cards, player_cards)
-    sleep 5
     next
   else
     prompt "You stayed at #{total(player_cards)}"
@@ -185,7 +185,6 @@ loop do
     player_score += 1
     display_result(dealer_cards, player_cards)
     compare_cards(dealer_cards, player_cards)
-    sleep 5
     next
   else
     prompt "Dealer stays at #{dealer_total}"
@@ -200,7 +199,6 @@ loop do
   end
 
   display_result(dealer_cards, player_cards)
-  sleep 5
 end
 
 prompt "Thank you for playing Twenty-One! Good bye!"
