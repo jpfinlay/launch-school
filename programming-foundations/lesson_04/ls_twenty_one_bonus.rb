@@ -12,7 +12,7 @@
 # dealer busts, or after both participants stay and compare cards. Why is the
 # last call to play_again? a little different from the previous two?
 
-# A2. The first two calls to #play_again? uses the ternary operator and in the
+# A2. The first two calls to #play_again? use the ternary operator and in the
 # first instance asks if the boolean return value from the method is true THEN
 # the outer loop starts again at the beginning (a new game) OTHERWISE the main
 # loop is broken out of and the program ends. The last call to #play_again?
@@ -137,14 +137,13 @@ loop do
   prompt "Dealer has #{dealer_cards[0]} and ?"
   prompt "You have: #{player_cards[0]} and #{player_cards[1]}, for a total of #{total(player_cards)}."
 
-  # player turn
+  player_turn = nil
   loop do
-    player_turn = nil
     loop do
-      prompt "Would you like to (h)it or (s)tay?"
+      prompt "Would you like to (h)it or (s)tay? (Press 'q' to quit at any time)."
       player_turn = gets.chomp.downcase
-      break if ['h', 's'].include?(player_turn)
-      prompt "Sorry, must enter 'h' or 's'."
+      break if ['h', 's', 'q'].include?(player_turn)
+      prompt "Sorry, must enter 'h', 's' or 'q'."
     end
 
     if player_turn == 'h'
@@ -153,8 +152,12 @@ loop do
       prompt "Your cards are now: #{player_cards}"
       prompt "Your total is now: #{total(player_cards)}"
     end
-    break if player_turn == 's' || busted?(player_cards)
+    break if player_turn == 's' ||
+             busted?(player_cards) ||
+             player_turn == 'q'
   end
+
+  break if player_turn == 'q'
 
   if busted?(player_cards)
     dealer_score += 1
@@ -176,7 +179,7 @@ loop do
     prompt "Dealer's cards are now: #{dealer_cards}"
   end
 
-  # cache dealer and player totals in variables
+  # cache dealer and player totals
   dealer_total = total(dealer_cards)
   player_total = total(player_cards)
 
