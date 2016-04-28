@@ -12,12 +12,10 @@
 # dealer busts, or after both participants stay and compare cards. Why is the
 # last call to play_again? a little different from the previous two?
 
-# A2. The first two calls to #play_again? use the ternary operator and in the
-# first instance asks if the boolean return value from the method is true THEN
-# the outer loop starts again at the beginning (a new game) OTHERWISE the main
-# loop is broken out of and the program ends. The last call to #play_again?
-# says 'break unless #play_again? is true' - in other words the first option is
-# to quit the game and only repeat the game loop if play_again? is true.
+# A2. The last call to play_again? *assumes* "false" unless play_again? evaluates 
+# true. The other two calls use the ternary operator and do not assume either true
+# or false to begin with, rather play_again? is evaluated first and then a decision
+# is made based on whether the return value is true or not.
 
 SUITS = ['H', 'D', 'S', 'C'].freeze
 VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'].freeze
