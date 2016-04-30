@@ -17,8 +17,6 @@
 # or false to begin with, rather play_again? is evaluated first and then a decision
 # is made based on whether the return value is true or not.
 
-require 'pry'
-
 SUITS = %w(H C D S).freeze
 VALUES = %w(2 3 4 5 6 7 8 9 10 J Q K A).freeze
 DEALER_STOPS_AT = 17
