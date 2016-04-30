@@ -17,10 +17,11 @@
 # or false to begin with, rather play_again? is evaluated first and then a decision
 # is made based on whether the return value is true or not.
 
-SUITS = ['H', 'D', 'S', 'C'].freeze
-VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'].freeze
+SUITS = %w(H C D S).freeze
+VALUES = %w(2 3 4 5 6 7 8 9 10 J Q K A).freeze
 DEALER_STOPS_AT = 17
 TARGET_SCORE = 21
+ROUND_POINTS = 5
 
 player_score = 0
 dealer_score = 0
@@ -96,7 +97,7 @@ def display_result(dealer_cards, player_cards)
   end
 end
 
-def compare_cards(dealer_cards, player_cards)
+def display_cards(dealer_cards, player_cards)
   display(
     "Dealer had #{dealer_cards}, for a total of: #{total(dealer_cards)}\n" \
     "Player had #{player_cards}, for a total of: #{total(player_cards)}"
@@ -120,7 +121,7 @@ display("Welcome to Twenty One (w/bonus features!)")
 loop do
   # display scores and check for winner
   display_scores(player_score, dealer_score)
-  break if player_score == 5 || dealer_score == 5
+  break if player_score == ROUND_POINTS || dealer_score == ROUND_POINTS
 
   # initialize vars
   deck = initialize_deck
@@ -161,7 +162,7 @@ loop do
   if busted?(player_cards)
     dealer_score += 1
     display_result(dealer_cards, player_cards)
-    compare_cards(dealer_cards, player_cards)
+    display_cards(dealer_cards, player_cards)
     next
   else
     prompt "You stayed at #{total(player_cards)}"
@@ -184,14 +185,14 @@ loop do
   if busted?(dealer_cards)
     player_score += 1
     display_result(dealer_cards, player_cards)
-    compare_cards(dealer_cards, player_cards)
+    display_cards(dealer_cards, player_cards)
     next
   else
     prompt "Dealer stays at #{dealer_total}"
   end
 
   # Both player and dealer stays - compare cards!
-  compare_cards(dealer_cards, player_cards)
+  display_cards(dealer_cards, player_cards)
   if dealer_total > player_total
     dealer_score += 1
   elsif player_total > dealer_total
