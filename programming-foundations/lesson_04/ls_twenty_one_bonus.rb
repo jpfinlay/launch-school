@@ -43,13 +43,11 @@ def total(cards)
 
   sum = 0
   values.each do |value|
-    if value == "A"
-      sum += 11
-    elsif value.to_i == 0 # J, Q, K
-      sum += 10
-    else
-      sum += value.to_i
-    end
+    sum += case value
+           when "A" then 11
+           when "J", "Q", "K" then 10
+           else value.to_i
+           end
   end
 
   # correct for Aces
@@ -125,7 +123,7 @@ def initial_deal(player_cards, dealer_cards, deck)
   end
 end
 
-def show_dealt_cards(player_cards, dealer_cards, deck)
+def show_dealt_cards(player_cards, dealer_cards)
   prompt "Dealer has #{dealer_cards[0]} and ?"
   prompt "You have: #{player_cards[0]} and #{player_cards[1]}, for a total of #{total(player_cards)}."
 end
@@ -151,7 +149,7 @@ def player_turn(player_choice, player_cards, deck)
              busted?(player_cards) ||
              player_choice == 'q'
   end
-  return player_choice
+  player_choice
 end
 
 def dealers_turn(dealer_cards, deck)
@@ -167,22 +165,19 @@ end
 display("Welcome to Twenty One (w/bonus features!)")
 
 loop do
-  # display scores and check for winner
   display_scores(player_score, dealer_score)
   break if player_score == ROUND_POINTS || dealer_score == ROUND_POINTS
 
-  # initialize vars
   deck = initialize_deck
   player_cards = []
   dealer_cards = []
 
-  # initial deal
   initial_deal(player_cards, dealer_cards, deck)
-  show_dealt_cards(player_cards, dealer_cards, deck)
+  show_dealt_cards(player_cards, dealer_cards)
 
   # player's turn
   player_choice = player_turn(player_choice, player_cards, deck)
-  
+
   if busted?(player_cards)
     dealer_score += 1
     display_result(dealer_cards, player_cards)
@@ -195,7 +190,7 @@ loop do
   end
 
   dealers_turn(dealer_cards, deck)
-  
+
   # cache dealer and player totals
   dealer_total = total(dealer_cards)
   player_total = total(player_cards)
