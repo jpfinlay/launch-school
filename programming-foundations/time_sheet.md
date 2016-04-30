@@ -62,5 +62,6 @@
 | 29    | Tue, 26 | Lesson 4: Twenty One Bonus Features                 | 2.5       |
 | 30    | Wed, 27 | Lesson 4: Twenty One Bonus Features                 | 2         |
 | 31    | Thu, 28 | Lesson 4: Twenty One Bonus Features                 | 1.5       |
-|       |         | **WEEK 6 TOTAL HOURS**                              | **7**     |
-|       |         | *Total hours (running)*                             | *----*    |
+| 32    | Sat, 30 | Lesson 4: Re-factor Twenty One Bonus Features       | 1         |
+|       |         | **WEEK 7 TOTAL HOURS**                              | **8**     |
+|       |         | *Total hours (running)*                             | *101.5*   |
