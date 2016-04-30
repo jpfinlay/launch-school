@@ -17,6 +17,8 @@
 # or false to begin with, rather play_again? is evaluated first and then a decision
 # is made based on whether the return value is true or not.
 
+require 'pry'
+
 SUITS = %w(H C D S).freeze
 VALUES = %w(2 3 4 5 6 7 8 9 10 J Q K A).freeze
 DEALER_STOPS_AT = 17
@@ -28,7 +30,7 @@ dealer_score = 0
 
 def prompt(msg)
   puts "=> #{msg}"
-  sleep 1
+  sleep 0.8
 end
 
 def initialize_deck
@@ -109,11 +111,57 @@ def display(msg)
   puts "=".center(msg.length, '=')
   puts msg
   puts "=".center(msg.length, '=')
-  sleep 2
+  sleep 0.8
 end
 
 def display_scores(player_score, dealer_score)
   display("Score: You (#{player_score}) - (#{dealer_score}) Dealer.")
+end
+
+def initial_deal(player_cards, dealer_cards, deck)
+  2.times do
+    player_cards << deck.pop
+    dealer_cards << deck.pop
+  end
+end
+
+def show_dealt_cards(player_cards, dealer_cards, deck)
+  prompt "Dealer has #{dealer_cards[0]} and ?"
+  prompt "You have: #{player_cards[0]} and #{player_cards[1]}, for a total of #{total(player_cards)}."
+end
+
+def hit(hand, deck)
+  hand << deck.pop
+  prompt "Hit!"
+  prompt "Hand: #{hand}"
+  prompt "Total: #{total(hand)}"
+end
+
+def player_turn(player_choice, player_cards, deck)
+  loop do
+    loop do
+      prompt "Would you like to (h)it or (s)tay? (Press 'q' to quit at any time)."
+      player_choice = gets.chomp.downcase
+      break if ['h', 's', 'q'].include?(player_choice)
+      prompt "Sorry, must enter 'h', 's' or 'q'."
+    end
+
+    hit(player_cards, deck) if player_choice == 'h'
+    break if player_choice == 's' ||
+             busted?(player_cards) ||
+             player_choice == 'q'
+  end
+  return player_choice
+end
+
+def dealers_turn(dealer_cards, deck)
+  prompt "Dealer turn..."
+  loop do
+    break if busted?(dealer_cards) || total(dealer_cards) >= DEALER_STOPS_AT
+    prompt "Dealer hits!"
+    dealer_cards << deck.pop
+    prompt "Dealer's cards are now: #{dealer_cards}"
+  end
 end
 
 display("Welcome to Twenty One (w/bonus features!)")
@@ -129,55 +177,25 @@ loop do
   dealer_cards = []
 
   # initial deal
-  2.times do
-    player_cards << deck.pop
-    dealer_cards << deck.pop
-  end
+  initial_deal(player_cards, dealer_cards, deck)
+  show_dealt_cards(player_cards, dealer_cards, deck)
 
-  prompt "Dealer has #{dealer_cards[0]} and ?"
-  prompt "You have: #{player_cards[0]} and #{player_cards[1]}, for a total of #{total(player_cards)}."
-
-  player_turn = nil
-  loop do
-    loop do
-      prompt "Would you like to (h)it or (s)tay? (Press 'q' to quit at any time)."
-      player_turn = gets.chomp.downcase
-      break if ['h', 's', 'q'].include?(player_turn)
-      prompt "Sorry, must enter 'h', 's' or 'q'."
-    end
-
-    if player_turn == 'h'
-      player_cards << deck.pop
-      prompt "You chose to hit!"
-      prompt "Your cards are now: #{player_cards}"
-      prompt "Your total is now: #{total(player_cards)}"
-    end
-    break if player_turn == 's' ||
-             busted?(player_cards) ||
-             player_turn == 'q'
-  end
-
-  break if player_turn == 'q'
-
+  # player's turn
+  player_choice = player_turn(player_choice, player_cards, deck)
+  
   if busted?(player_cards)
     dealer_score += 1
     display_result(dealer_cards, player_cards)
     display_cards(dealer_cards, player_cards)
     next
-  else
-    prompt "You stayed at #{total(player_cards)}"
+  elsif player_choice == 's'
+    prompt "Stays at #{total(player_cards)}"
+  elsif player_choice == 'q'
+    break
   end
 
-  # dealer turn
-  prompt "Dealer turn..."
-
-  loop do
-    break if busted?(dealer_cards) || total(dealer_cards) >= DEALER_STOPS_AT
-    prompt "Dealer hits!"
-    dealer_cards << deck.pop
-    prompt "Dealer's cards are now: #{dealer_cards}"
-  end
-
+  dealers_turn(dealer_cards, deck)
+  
   # cache dealer and player totals
   dealer_total = total(dealer_cards)
   player_total = total(player_cards)
@@ -191,7 +209,7 @@ loop do
     prompt "Dealer stays at #{dealer_total}"
   end
 
-  # Both player and dealer stays - compare cards!
+  # Both player and dealer stays. Display and compare cards.
   display_cards(dealer_cards, player_cards)
   if dealer_total > player_total
     dealer_score += 1
