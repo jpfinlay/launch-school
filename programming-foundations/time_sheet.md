@@ -65,3 +65,8 @@
 | 32    | Sat, 30 | Lesson 4: Re-factor Twenty One Bonus Features       | 2         |
 |       |         | **WEEK 7 TOTAL HOURS**                              | **9**     |
 |       |         | *Total hours (running)*                             | *102.5*   |
+|       |         |                                                     |           |
+|       |         | **WEEK 8: 2 - 8 MAY 2016**                          |           |
+| 33    | Mon, 2  | Programming Foundations Revision / Reading          | 3         |
+|       |         | **WEEK 8 TOTAL HOURS**                              | **3**     |
+|       |         | *Total hours (running)*                             | *105.5*   |
