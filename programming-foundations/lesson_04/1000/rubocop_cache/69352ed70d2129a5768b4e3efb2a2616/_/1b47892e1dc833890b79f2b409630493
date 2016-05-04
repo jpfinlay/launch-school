@@ -1,1 +1,0 @@
-[{"severity":"convention","location":{"begin_pos":1503,"end_pos":1627},"message":"Use the return of the conditional for variable assignment and comparison.","cop_name":"Style/ConditionalAssignment","status":"uncorrected"}]
