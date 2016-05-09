@@ -68,5 +68,12 @@
 |       |         |                                                     |           |
 |       |         | **WEEK 8: 2 - 8 MAY 2016**                          |           |
 | 33    | Mon, 2  | Programming Foundations Revision / Reading          | 3         |
-|       |         | **WEEK 8 TOTAL HOURS**                              | **3**     |
-|       |         | *Total hours (running)*                             | *105.5*   |
+| 34    | Fri, 6  | Programming Foundations Revision / Reading          | 1.5       |
+| 35    | Sun, 8  | Programming Foundations Revision / Reading          | 4         |
+|       |         | **WEEK 8 TOTAL HOURS**                              | **8.5**   |
+|       |         | *Total hours (running)*                             | *111*     |
+|       |         |                                                     |           |
+|       |         | **WEEK 9: 9 - 15 MAY 2016**                         |           |
+| 36    | Mon, 9  | Programming Foundations Revision / Reading          | 2         |
+|       |         | **WEEK 9 TOTAL HOURS**                              | **2**     |
+|       |         | *Total hours (running)*                             | *113*     |
