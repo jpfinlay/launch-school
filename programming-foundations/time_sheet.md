@@ -58,28 +58,28 @@
 |       |         | *Total hours (running)*                             | *93.5*    |
 |       |         |                                                     |           |
 |       |         | **WEEK 7: 25 APRIL - 1 MAY 2016**                   |           |
-| 28    | Mon, 25 | Lesson 4: Twenty One Bonus Features                 | 1         |
-| 29    | Tue, 26 | Lesson 4: Twenty One Bonus Features                 | 2.5       |
-| 30    | Wed, 27 | Lesson 4: Twenty One Bonus Features                 | 2         |
-| 31    | Thu, 28 | Lesson 4: Twenty One Bonus Features                 | 1.5       |
-| 32    | Sat, 30 | Lesson 4: Re-factor Twenty One Bonus Features       | 2         |
+| 32    | Mon, 25 | Lesson 4: Twenty One Bonus Features                 | 1         |
+| 33    | Tue, 26 | Lesson 4: Twenty One Bonus Features                 | 2.5       |
+| 34    | Wed, 27 | Lesson 4: Twenty One Bonus Features                 | 2         |
+| 35    | Thu, 28 | Lesson 4: Twenty One Bonus Features                 | 1.5       |
+| 36    | Sat, 30 | Lesson 4: Re-factor Twenty One Bonus Features       | 2         |
 |       |         | **WEEK 7 TOTAL HOURS**                              | **9**     |
 |       |         | *Total hours (running)*                             | *102.5*   |
 |       |         |                                                     |           |
 |       |         | **WEEK 8: 2 - 8 MAY 2016**                          |           |
-| 33    | Mon, 2  | Programming Foundations Revision / Reading          | 3         |
-| 34    | Fri, 6  | Programming Foundations Revision / Reading          | 1.5       |
-| 35    | Sun, 8  | Programming Foundations Revision / Reading          | 4         |
+| 37    | Mon, 2  | Programming Foundations Revision / Reading          | 3         |
+| 38    | Fri, 6  | Programming Foundations Revision / Reading          | 1.5       |
+| 39    | Sun, 8  | Programming Foundations Revision / Reading          | 4         |
 |       |         | **WEEK 8 TOTAL HOURS**                              | **8.5**   |
 |       |         | *Total hours (running)*                             | *111*     |
 |       |         |                                                     |           |
 |       |         | **WEEK 9: 9 - 15 MAY 2016**                         |           |
-| 36    | Mon, 9  | Programming Foundations Revision / Reading          | 2         |
+| 40    | Mon, 9  | Programming Foundations Revision / Reading          | 2         |
 |       |         | **WEEK 9 TOTAL HOURS**                              | **2**     |
 |       |         | *Total hours (running)*                             | *113*     |
 |       |         |                                                     |           |
 |       |         | **WEEK 10: 16 - 22 MAY 2016**                       |           |
-| 34    | Tue, 17 | Programming Foundations Revision / Reading.         | 2         |
+| 41    | Tue, 17 | Programming Foundations Revision / Reading.         | 2         |
 |       |         | **WEEK 10 TOTAL HOURS**                             | **2**     |
 |       |         | *Total hours (running)*                             | *115*     |
 |       |         |                                                     |           |
@@ -89,9 +89,9 @@
 |       |         | *Total hours (running)*                             | *115*     |
 |       |         |                                                     |           |
 |       |         | **WEEK 12: 30 MAY - 5 JUNE 2016**                   |           |
-| 35    | Mon, 30 | Programming Foundations Revision / Reading          | 3         |
-| 36    | Tue, 31 | Programming Foundations Revision / Reading          | 2         |
-| 37    | Wed, 01 | Programming Foundations Revision / Reading          | 2         |
-| 38    | Sun, 05 | Programming Foundations Revision / Reading          | 2.5       |
+| 42    | Mon, 30 | Programming Foundations Revision / Reading          | 3         |
+| 43    | Tue, 31 | Programming Foundations Revision / Reading          | 2         |
+| 44    | Wed, 01 | Programming Foundations Revision / Reading          | 2         |
+| 45    | Sun, 05 | Programming Foundations Revision / Reading          | 2.5       |
 |       |         | **WEEK 12 TOTAL HOURS**                             | **9.5**   |
 |       |         | *Total hours (running)*                             | *124.5*   |
