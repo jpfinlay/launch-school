@@ -77,3 +77,21 @@
 | 36    | Mon, 9  | Programming Foundations Revision / Reading          | 2         |
 |       |         | **WEEK 9 TOTAL HOURS**                              | **2**     |
 |       |         | *Total hours (running)*                             | *113*     |
+|       |         |                                                     |           |
+|       |         | **WEEK 10: 16 - 22 MAY 2016**                       |           |
+| 34    | Tue, 17 | Programming Foundations Revision / Reading.         | 2         |
+|       |         | **WEEK 10 TOTAL HOURS**                             | **2**     |
+|       |         | *Total hours (running)*                             | *115*     |
+|       |         |                                                     |           |
+|       |         | **WEEK 11: 23 - 29 MAY 2016**                       |           |
+| N/A   | N/A     | No work done.                                       | 0         |
+|       |         | **WEEK 11 TOTAL HOURS**                             | **0**     |
+|       |         | *Total hours (running)*                             | *115*     |
+|       |         |                                                     |           |
+|       |         | **WEEK 12: 30 MAY - 5 JUNE 2016**                   |           |
+| 35    | Mon, 30 | Programming Foundations Revision / Reading          | 3         |
+| 36    | Tue, 31 | Programming Foundations Revision / Reading          | 2         |
+| 37    | Wed, 01 | Programming Foundations Revision / Reading          | 2         |
+| 38    | Sun, 05 | Programming Foundations Revision / Reading          | 2.5       |
+|       |         | **WEEK 12 TOTAL HOURS**                             | **9.5**   |
+|       |         | *Total hours (running)*                             | *124.5*   |
