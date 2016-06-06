@@ -95,3 +95,8 @@
 | 45    | Sun, 05 | Programming Foundations Revision / Reading          | 2.5       |
 |       |         | **WEEK 12 TOTAL HOURS**                             | **9.5**   |
 |       |         | *Total hours (running)*                             | *124.5*   |
+|       |         |                                                     |           |
+|       |         | **WEEK 12: 6 - 12 JUNE 2016**                       |           |
+| 46    | Mon, 06 | Programming Foundations Revision / Reading          | 3.5       |
+|       |         | **WEEK 12 TOTAL HOURS**                             | **3.5**   |
+|       |         | *Total hours (running)*                             | *128*     |
